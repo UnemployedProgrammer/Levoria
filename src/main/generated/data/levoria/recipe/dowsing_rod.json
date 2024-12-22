@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": "minecraft:coal_ore",
+    "B": "minecraft:iron_ore",
+    "C": "minecraft:gold_ore",
+    "D": "minecraft:deepslate_diamond_ore",
+    "E": "minecraft:deepslate_redstone_ore",
+    "F": "minecraft:deepslate_lapis_ore",
+    "G": "minecraft:nether_quartz_ore",
+    "H": "minecraft:nether_gold_ore",
+    "I": "minecraft:ancient_debris"
+  },
+  "pattern": [
+    "ABC",
+    "DEF",
+    "GHI"
+  ],
+  "result": {
+    "count": 1,
+    "id": "levoria:dowsing_rod"
+  }
+}

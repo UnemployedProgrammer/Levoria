@@ -1,0 +1,11 @@
+{
+	"required": true,
+	"package": "com.sebastian.levoria.mixin.client",
+	"compatibilityLevel": "JAVA_21",
+	"client": [
+      "BlockStateLuminanceClientMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}
