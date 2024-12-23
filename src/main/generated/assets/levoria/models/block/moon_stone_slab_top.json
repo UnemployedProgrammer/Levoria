@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "levoria:block/moon_stone",
+    "side": "levoria:block/moon_stone",
+    "top": "levoria:block/moon_stone"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_moon_stone_stairs": {
+      "conditions": {
+        "items": [
+          {
+            "items": "levoria:moon_stone_stairs"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "levoria:moon_stone_stairs"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_moon_stone_stairs"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "levoria:moon_stone_stairs"
+    ]
+  }
+}

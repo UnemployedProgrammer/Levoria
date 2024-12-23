@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "levoria:block/moon_stone_slab"
+    },
+    "type=double": {
+      "model": "levoria:block/moon_stone"
+    },
+    "type=top": {
+      "model": "levoria:block/moon_stone_slab_top"
+    }
+  }
+}

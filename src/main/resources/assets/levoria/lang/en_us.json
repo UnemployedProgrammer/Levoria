@@ -1,3 +1,18 @@
 {
-  "item.levoria.dowsing_rod": "Dowsing Rod"
+  "item.levoria.dowsing_rod": "Dowsing Rod",
+
+  "block.levoria.moon_stone": "Moon Stone",
+  "item.levoria.moon_stone": "Moon Stone",
+  "block.levoria.moon_stone_stairs": "Moon Stone Stairs",
+  "item.levoria.moon_stone_stairs": "Moon Stone Stairs",
+  "block.levoria.moon_stone_slab": "Moon Stone Slab",
+  "item.levoria.moon_stone_slab": "Moon Stone Slab",
+  "block.levoria.moon_stone_button": "Moon Stone Button",
+  "item.levoria.moon_stone_button": "Moon Stone Button",
+  "block.levoria.moon_stone_pressure_plate": "Moon Stone Pressure Plate",
+  "item.levoria.moon_stone_pressure_plate": "Moon Stone Pressure Plate",
+  "block.levoria.moon_stone_wall": "Moon Stone Wall",
+  "item.levoria.moon_stone_wall": "Moon Stone Wall",
+
+  "item.levoria.dowsing_rod.tooltip.error": "Error while loading current selected entry."
 }

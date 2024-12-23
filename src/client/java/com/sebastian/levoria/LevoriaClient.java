@@ -1,10 +1,12 @@
 package com.sebastian.levoria;
 
+import com.sebastian.levoria.effects.MoonDimensionEffects;
 import com.sebastian.levoria.network.HighlightBlockS2C;
 import com.sebastian.levoria.network.TotemAnimationS2C;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.fabricmc.fabric.api.client.rendering.v1.DimensionRenderingRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderContext;
 import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderEvents;
 import net.minecraft.block.BlockState;
@@ -18,6 +20,9 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.component.type.DeathProtectionComponent;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.crash.CrashException;
 import net.minecraft.util.crash.CrashReport;
 import net.minecraft.util.crash.CrashReportSection;
@@ -26,9 +31,11 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.BlockRenderView;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 public class LevoriaClient implements ClientModInitializer {
 
@@ -61,8 +68,29 @@ public class LevoriaClient implements ClientModInitializer {
 
 	List<BlockHighlightInstance> highlightedBlocks = new ArrayList<>();
 
+	public static void applyDimensionEffect(DimensionEffects effects, Identifier id) {
+		try {
+			// Access the private BY_IDENTIFIER field in DimensionEffects
+			Field byIdentifierField = DimensionEffects.class.getDeclaredField("BY_IDENTIFIER");
+			byIdentifierField.setAccessible(true);
+
+			// Get the map instance
+			@SuppressWarnings("unchecked")
+			Map<Identifier, DimensionEffects> effectsMap =
+					(Map<Identifier, DimensionEffects>) byIdentifierField.get(null);
+
+			// Add your custom dimension effects
+			effectsMap.put(id, effects);
+
+		} catch (NoSuchFieldException | IllegalAccessException e) {
+			e.printStackTrace();
+		}
+	}
+
 	@Override
 	public void onInitializeClient() {
+		applyDimensionEffect(new MoonDimensionEffects(), Levoria.getId("moon"));
+
 		ClientPlayNetworking.registerGlobalReceiver(TotemAnimationS2C.ID, (payload, context) -> {
 			context.client().execute(() -> {
 				MinecraftClient.getInstance().gameRenderer.showFloatingItem(new ItemStack(TotemAnimationS2C.toBlock(payload.block())));
@@ -75,6 +103,8 @@ public class LevoriaClient implements ClientModInitializer {
 				Levoria.LOGGER.info("Going to highlight block at " + payload.block().toShortString());
 			});
 		});
+
+		/////////////////////////////////////////////////////////////////// RENDERING ////////////////////////////////////////////////////////////////////////
 
 		WorldRenderEvents.END.register((ctx) -> {
 			IN_RENDERING = true;

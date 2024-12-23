@@ -1,5 +1,6 @@
 package com.sebastian.levoria.datagen;
 
+import com.sebastian.levoria.block.ModBlocks;
 import com.sebastian.levoria.item.ModItems;
 import com.sebastian.levoria.tags.ModTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -8,6 +9,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.data.server.recipe.RecipeGenerator;
 import net.minecraft.item.ItemConvertible;
+import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
@@ -72,6 +74,20 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .input('H', Blocks.NETHER_GOLD_ORE.asItem())
                         .input('I', Blocks.ANCIENT_DEBRIS.asItem())
                         .criterion(hasItem(ModItems.DOWSING_ROD), conditionsFromItem(ModItems.DOWSING_ROD))
+                        .offerTo(exporter);
+
+                createSlabRecipe(RecipeCategory.BUILDING_BLOCKS, ModBlocks.MOON_STONE_SLAB, Ingredient.ofItem(ModBlocks.MOON_STONE))
+                        .criterion(hasItem(ModBlocks.MOON_STONE_SLAB), conditionsFromItem(ModBlocks.MOON_STONE_SLAB))
+                        .offerTo(exporter);
+
+                createStairsRecipe(ModBlocks.MOON_STONE_STAIRS, Ingredient.ofItem(ModBlocks.MOON_STONE))
+                        .criterion(hasItem(ModBlocks.MOON_STONE_STAIRS), conditionsFromItem(ModBlocks.MOON_STONE_STAIRS))
+                        .offerTo(exporter);
+
+                offerWallRecipe(RecipeCategory.BUILDING_BLOCKS, ModBlocks.MOON_STONE_WALL, ModBlocks.MOON_STONE);
+                offerPressurePlateRecipe(ModBlocks.MOON_STONE_PRESSURE_PLATE, ModBlocks.MOON_STONE);
+                createButtonRecipe(ModBlocks.MOON_STONE_BUTTON, Ingredient.ofItem(ModBlocks.MOON_STONE))
+                        .criterion(hasItem(ModBlocks.MOON_STONE_BUTTON), conditionsFromItem(ModBlocks.MOON_STONE_BUTTON))
                         .offerTo(exporter);
             }
         };

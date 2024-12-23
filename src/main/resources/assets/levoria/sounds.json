@@ -1,0 +1,10 @@
+{
+  "moon_atmos": {
+    "sounds": [
+      {
+        "name": "levoria:moon_atmos",
+        "stream": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "redstone",
+  "ingredients": [
+    "levoria:moon_stone"
+  ],
+  "result": {
+    "count": 1,
+    "id": "levoria:moon_stone_button"
+  }
+}

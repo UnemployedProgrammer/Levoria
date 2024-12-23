@@ -129,36 +129,40 @@ public class DowsingRod extends Item {
     @Override
     public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
 
-        if(oreBlocks.isEmpty()) {
-            oreBlocks.add(Blocks.COAL_ORE);
-            oreBlocks.add(Blocks.DEEPSLATE_COAL_ORE);
+        try {
+            if(oreBlocks.isEmpty()) {
+                oreBlocks.add(Blocks.COAL_ORE);
+                oreBlocks.add(Blocks.DEEPSLATE_COAL_ORE);
 
-            oreBlocks.add(Blocks.IRON_ORE);
-            oreBlocks.add(Blocks.DEEPSLATE_IRON_ORE);
+                oreBlocks.add(Blocks.IRON_ORE);
+                oreBlocks.add(Blocks.DEEPSLATE_IRON_ORE);
 
-            oreBlocks.add(Blocks.GOLD_ORE);
-            oreBlocks.add(Blocks.DEEPSLATE_GOLD_ORE);
+                oreBlocks.add(Blocks.GOLD_ORE);
+                oreBlocks.add(Blocks.DEEPSLATE_GOLD_ORE);
 
-            oreBlocks.add(Blocks.LAPIS_ORE);
-            oreBlocks.add(Blocks.DEEPSLATE_LAPIS_ORE);
+                oreBlocks.add(Blocks.LAPIS_ORE);
+                oreBlocks.add(Blocks.DEEPSLATE_LAPIS_ORE);
 
-            oreBlocks.add(Blocks.REDSTONE_ORE);
-            oreBlocks.add(Blocks.DEEPSLATE_REDSTONE_ORE);
+                oreBlocks.add(Blocks.REDSTONE_ORE);
+                oreBlocks.add(Blocks.DEEPSLATE_REDSTONE_ORE);
 
-            oreBlocks.add(Blocks.DIAMOND_ORE);
-            oreBlocks.add(Blocks.DEEPSLATE_DIAMOND_ORE);
+                oreBlocks.add(Blocks.DIAMOND_ORE);
+                oreBlocks.add(Blocks.DEEPSLATE_DIAMOND_ORE);
 
-            oreBlocks.add(Blocks.NETHER_QUARTZ_ORE);
+                oreBlocks.add(Blocks.NETHER_QUARTZ_ORE);
 
-            oreBlocks.add(Blocks.NETHER_GOLD_ORE);
+                oreBlocks.add(Blocks.NETHER_GOLD_ORE);
 
-            oreBlocks.add(Blocks.ANCIENT_DEBRIS);
+                oreBlocks.add(Blocks.ANCIENT_DEBRIS);
+            }
+
+            Integer current = stack.get(ModDataComponentTypes.LOOKFOR_ORE);
+            if (current == null) current = 0;
+
+            tooltip.add(Text.literal("» ").append(oreBlocks.get(current - 1).getName()).append(" «").formatted(Formatting.GREEN));
+        } catch (Exception e) {
+            tooltip.add(Text.literal("» ").append(Text.translatable("item.levoria.dowsing_rod.tooltip.error")).append(" «").formatted(Formatting.RED));
         }
-
-        Integer current = stack.get(ModDataComponentTypes.LOOKFOR_ORE);
-        if (current == null) current = 0;
-
-        tooltip.add(Text.literal("» ").append(oreBlocks.get(current - 1).getName()).append(" «").formatted(Formatting.GREEN));
         super.appendTooltip(stack, context, tooltip, type);
     }
 

@@ -1,1 +1,7 @@
-// 1.21.3	2024-12-22T23:26:52.7444706	Levoria/Block Loot Tables
+// 1.21.3	2024-12-23T15:01:30.1721389	Levoria/Block Loot Tables
+e21a90f1550d14c25b943f91a1961615e2edfdf3 data\levoria\loot_table\blocks\moon_stone.json
+d0dc3c7feb503bf718dade4f716b40b6c51290c9 data\levoria\loot_table\blocks\moon_stone_wall.json
+3d3fc3d304690c1b61f2d315dc449fbf3d105ec4 data\levoria\loot_table\blocks\moon_stone_button.json
+f45f6a91552fc08681405c5b91209df31b92a4a9 data\levoria\loot_table\blocks\moon_stone_slab.json
+65c12edd001f9b66469d30f11473310c497492c5 data\levoria\loot_table\blocks\moon_stone_stairs.json
+3f03731bf7100a6f24af2bf0e0169dc4effa9483 data\levoria\loot_table\blocks\moon_stone_pressure_plate.json

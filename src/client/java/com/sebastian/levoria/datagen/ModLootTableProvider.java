@@ -1,5 +1,6 @@
 package com.sebastian.levoria.datagen;
 
+import com.sebastian.levoria.block.ModBlocks;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import net.minecraft.block.Block;
@@ -24,6 +25,13 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
 
     @Override
     public void generate() {
+        addDrop(ModBlocks.MOON_STONE);
+        addDrop(ModBlocks.MOON_STONE_SLAB, slabDrops(ModBlocks.MOON_STONE_SLAB));
+        addDrop(ModBlocks.MOON_STONE_STAIRS);
+        addDrop(ModBlocks.MOON_STONE_WALL);
+        addDrop(ModBlocks.MOON_STONE_PRESSURE_PLATE);
+        addDrop(ModBlocks.MOON_STONE_BUTTON);
+
         //addDrop(ModBlocks.PINK_GARNET_BLOCK);
         //        addDrop(ModBlocks.RAW_PINK_GARNET_BLOCK);
         //        addDrop(ModBlocks.MAGIC_BLOCK);

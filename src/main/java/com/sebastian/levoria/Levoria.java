@@ -24,9 +24,11 @@ public class Levoria implements ModInitializer {
 		ModDataComponentTypes.registerDataComponentTypes();
 		ModBlocks.registerModBlocks();
 
+
 		//PACKETS
 		PayloadTypeRegistry.playS2C().register(TotemAnimationS2C.ID, TotemAnimationS2C.PACKET_CODEC);
 		PayloadTypeRegistry.playS2C().register(HighlightBlockS2C.ID, HighlightBlockS2C.PACKET_CODEC);
+
 	}
 
 	public static Identifier getId(String sub) {

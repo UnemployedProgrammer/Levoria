@@ -1,5 +1,6 @@
 package com.sebastian.levoria.datagen;
 
+import com.sebastian.levoria.block.ModBlocks;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.data.client.*;
@@ -15,9 +16,17 @@ public class ModModelProvider extends FabricModelProvider {
 
     @Override
     public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
+
+        BlockStateModelGenerator.BlockTexturePool moonStonePool = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBlocks.MOON_STONE);
+        //blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.MOON_STONE);
+
+        moonStonePool.slab(ModBlocks.MOON_STONE_SLAB);
+        moonStonePool.stairs(ModBlocks.MOON_STONE_STAIRS);
+        moonStonePool.wall(ModBlocks.MOON_STONE_WALL);
+        moonStonePool.button(ModBlocks.MOON_STONE_BUTTON);
+        moonStonePool.pressurePlate(ModBlocks.MOON_STONE_PRESSURE_PLATE);
+
         /*
-        BlockStateModelGenerator.BlockTexturePool pinkGarnetPool = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBlocks.PINK_GARNET_BLOCK);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.RAW_PINK_GARNET_BLOCK);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.PINK_GARNET_ORE);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.PINK_GARNET_DEEPSLATE_ORE);
 
@@ -45,9 +54,11 @@ public class ModModelProvider extends FabricModelProvider {
 
     @Override
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
+
+        //itemModelGenerator.register(ModItems.PINK_GARNET, Models.GENERATED);
+        //itemModelGenerator.register(ModItems.RAW_PINK_GARNET, Models.GENERATED);
+
         /*
-        itemModelGenerator.register(ModItems.PINK_GARNET, Models.GENERATED);
-        itemModelGenerator.register(ModItems.RAW_PINK_GARNET, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.CAULIFLOWER, Models.GENERATED);
         // itemModelGenerator.register(ModItems.CHISEL, Models.GENERATED);
