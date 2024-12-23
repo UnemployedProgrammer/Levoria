@@ -1,6 +1,7 @@
 package com.sebastian.levoria;
 
 import com.sebastian.levoria.block.ModBlocks;
+import com.sebastian.levoria.block.entity.ModBlockEntities;
 import com.sebastian.levoria.item.ModDataComponentTypes;
 import com.sebastian.levoria.item.ModItems;
 import com.sebastian.levoria.network.HighlightBlockS2C;
@@ -23,6 +24,7 @@ public class Levoria implements ModInitializer {
 		ModItems.registerModItems();
 		ModDataComponentTypes.registerDataComponentTypes();
 		ModBlocks.registerModBlocks();
+		ModBlockEntities.registerModBlockEntities();
 
 
 		//PACKETS

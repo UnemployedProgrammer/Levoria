@@ -1,6 +1,7 @@
 package com.sebastian.levoria.block;
 
 import com.sebastian.levoria.Levoria;
+import com.sebastian.levoria.util.AdvancedRegisterBlock;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.block.*;
 import net.minecraft.item.BlockItem;
@@ -28,6 +29,10 @@ public class ModBlocks {
     public static final Block MOON_STONE = registerBlock("moon_stone",
             new Block(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Levoria.getId("moon_stone"))).strength(4f)
                     .requiresTool().sounds(BlockSoundGroup.STONE)));
+
+    public static final HiddenHunterBlock HIDDEN_HUNTER = AdvancedRegisterBlock.registerWithItem("hidden_hunter",
+            new HiddenHunterBlock(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Levoria.getId("hidden_hunter"))).nonOpaque().dropsNothing().strength(30f)
+                    .sounds(BlockSoundGroup.STONE).noBlockBreakParticles()));
 
     //CUSTOM NON_BLOCK BLOCKS (Stairs, etc...)
 

@@ -20,11 +20,11 @@ public class ModItems {
 
     public static final Item DOWSING_ROD = registerEasyItem("dowsing_rod", DowsingRod.class, new Item.Settings().maxDamage(100).maxCount(1).component(ModDataComponentTypes.LOOKFOR_ORE, 0));
 
-    private static Item registerItem(String name, Item item) {
+    public static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, Levoria.getId(name), item);
     }
 
-    private static Item registerEasyItem(String name, Class<? extends Item> item, Item.Settings settings) {
+    public static Item registerEasyItem(String name, Class<? extends Item> item, Item.Settings settings) {
         try {
             return Registry.register(Registries.ITEM, Levoria.getId(name), item.getConstructor(Item.Settings.class).newInstance(settings.registryKey(RegistryKey.of(RegistryKeys.ITEM, Levoria.getId(name)))));
         } catch (NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e) {

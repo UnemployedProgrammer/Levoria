@@ -100,14 +100,20 @@ public class DowsingRod extends Item {
                 //Logic
 
                 Integer current = user.getStackInHand(hand).get(ModDataComponentTypes.LOOKFOR_ORE);
+
+                System.out.println(current - 1);
+
+                if(current - 1 == -1)
+                    current = 15;
+
                 if(current == null)
-                    current = 0;
+                    current = 15;
+
 
                 for (BlockPos blockPos : getSphereAroundPlayer(user, 10)) {
                     //System.out.println("Found at " + blockPos.toString() + " block: " + world.getBlockState(blockPos).getBlock().getName());
-                    //System.out.println(oreBlocks.get(current - 1).getName());
                     if (world.getBlockState(blockPos).isOf(oreBlocks.get(current - 1))) {
-                        //System.out.println("Found!");
+                        System.out.println("Found!");
                         ServerPlayNetworking.send(user.getServer().getPlayerManager().getPlayer(user.getUuid()), new HighlightBlockS2C(blockPos));
                     }
                 }
@@ -126,6 +132,7 @@ public class DowsingRod extends Item {
 
     //TOOLTIP
 
+    /*
     @Override
     public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
 
@@ -165,6 +172,7 @@ public class DowsingRod extends Item {
         }
         super.appendTooltip(stack, context, tooltip, type);
     }
+     */
 
     //ENCHANT
 
@@ -203,6 +211,7 @@ public class DowsingRod extends Item {
         Integer current = user.getStackInHand(hand).get(ModDataComponentTypes.LOOKFOR_ORE);
         if(current == null) {
             user.getStackInHand(hand).set(ModDataComponentTypes.LOOKFOR_ORE, 0);
+            current = 0;
         }
         Integer next = current + 1;
         if(next >= oreBlocks.size()) {

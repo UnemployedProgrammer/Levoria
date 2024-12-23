@@ -10,7 +10,7 @@ import org.joml.Matrix4f;
 
 public class MoonSkyRenderer {
 
-    private static final Identifier EARTH_TEXTURE = Levoria.getId("/textures/atmosphere/earth.png.");
+    private static final Identifier EARTH_TEXTURE = Levoria.getId("/textures/atmosphere/earth.png");
 
     public static void renderEarth(float alpha, Tessellator tesselator, MatrixStack matrices) {
         float size = 20.0F; // Moon size
