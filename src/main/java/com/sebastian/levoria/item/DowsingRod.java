@@ -5,18 +5,26 @@ import com.sebastian.levoria.Levoria;
 import com.sebastian.levoria.network.HighlightBlockS2C;
 import com.sebastian.levoria.network.TotemAnimationS2C;
 import com.sebastian.levoria.tags.ModTags;
+import net.fabricmc.fabric.api.item.v1.EnchantingContext;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.component.ComponentType;
 import net.minecraft.component.DataComponentTypes;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BowItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.item.tooltip.TooltipType;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
@@ -77,13 +85,17 @@ public class DowsingRod extends Item {
                 //Survival Logic
 
                 if(user.getStackInHand(Hand.OFF_HAND).isOf(Items.STICK)) {
-                    user.getStackInHand(hand).setDamage(user.getStackInHand(hand).getDamage() + 10);
+                    user.getStackInHand(hand).setDamage(user.getStackInHand(hand).getDamage() - 1);
                     user.getStackInHand(Hand.OFF_HAND).decrement(1);
                     return ActionResult.CONSUME;
                 }
 
                 user.getItemCooldownManager().set(user.getStackInHand(hand), 50);
                 user.getStackInHand(hand).damage(1, user);
+                if(user.getStackInHand(hand).getDamage() == user.getStackInHand(hand).getMaxDamage()) {
+                    user.setStackInHand(hand, ItemStack.EMPTY);
+                    world.playSound(null, user.getBlockPos(), SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.PLAYERS, 1f, 1f);
+                }
 
                 //Logic
 
@@ -110,6 +122,53 @@ public class DowsingRod extends Item {
 
         //user.getStackInHand(hand).set(ModDataComponentTypes.LOOKFOR_ORE, Blocks.DIAMOND_BLOCK);
         return ActionResult.SUCCESS;
+    }
+
+    //TOOLTIP
+
+    @Override
+    public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+
+        if(oreBlocks.isEmpty()) {
+            oreBlocks.add(Blocks.COAL_ORE);
+            oreBlocks.add(Blocks.DEEPSLATE_COAL_ORE);
+
+            oreBlocks.add(Blocks.IRON_ORE);
+            oreBlocks.add(Blocks.DEEPSLATE_IRON_ORE);
+
+            oreBlocks.add(Blocks.GOLD_ORE);
+            oreBlocks.add(Blocks.DEEPSLATE_GOLD_ORE);
+
+            oreBlocks.add(Blocks.LAPIS_ORE);
+            oreBlocks.add(Blocks.DEEPSLATE_LAPIS_ORE);
+
+            oreBlocks.add(Blocks.REDSTONE_ORE);
+            oreBlocks.add(Blocks.DEEPSLATE_REDSTONE_ORE);
+
+            oreBlocks.add(Blocks.DIAMOND_ORE);
+            oreBlocks.add(Blocks.DEEPSLATE_DIAMOND_ORE);
+
+            oreBlocks.add(Blocks.NETHER_QUARTZ_ORE);
+
+            oreBlocks.add(Blocks.NETHER_GOLD_ORE);
+
+            oreBlocks.add(Blocks.ANCIENT_DEBRIS);
+        }
+
+        Integer current = stack.get(ModDataComponentTypes.LOOKFOR_ORE);
+        if (current == null) current = 0;
+
+        tooltip.add(Text.literal("» ").append(oreBlocks.get(current - 1).getName()).append(" «").formatted(Formatting.GREEN));
+        super.appendTooltip(stack, context, tooltip, type);
+    }
+
+    //ENCHANT
+
+
+    @Override
+    public boolean canBeEnchantedWith(ItemStack stack, RegistryEntry<Enchantment> enchantment, EnchantingContext context) {
+        //return enchantment.matchesId(Enchantments.UNBREAKING.getValue()) || enchantment.matchesId(Enchantments.MENDING.getValue());
+        return super.canBeEnchantedWith(stack, enchantment, context);
     }
 
     //UTIL
