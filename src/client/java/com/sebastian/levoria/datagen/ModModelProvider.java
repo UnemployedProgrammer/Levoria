@@ -55,7 +55,7 @@ public class ModModelProvider extends FabricModelProvider {
     @Override
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
 
-        //itemModelGenerator.register(ModItems.PINK_GARNET, Models.GENERATED);
+        itemModelGenerator.register(ModBlocks.HIDDEN_HUNTER.asItem(), Models.GENERATED);
         //itemModelGenerator.register(ModItems.RAW_PINK_GARNET, Models.GENERATED);
 
         /*

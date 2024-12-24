@@ -1,4 +1,6 @@
 {
+  "itemgroup.levoria": "Levoria",
+
   "item.levoria.dowsing_rod": "Dowsing Rod",
 
   "block.levoria.moon_stone": "Moon Stone",
@@ -13,6 +15,9 @@
   "item.levoria.moon_stone_pressure_plate": "Moon Stone Pressure Plate",
   "block.levoria.moon_stone_wall": "Moon Stone Wall",
   "item.levoria.moon_stone_wall": "Moon Stone Wall",
+
+  "block.levoria.hidden_hunter": "Hidden Hunter",
+  "item.levoria.hidden_hunter": "Hidden Hunter",
 
   "item.levoria.dowsing_rod.tooltip.error": "Error while loading current selected entry."
 }

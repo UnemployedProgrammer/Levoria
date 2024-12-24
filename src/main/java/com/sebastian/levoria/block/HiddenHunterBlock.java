@@ -18,6 +18,8 @@ import net.minecraft.util.BlockRotation;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -44,13 +46,15 @@ public class HiddenHunterBlock extends BlockWithEntity {
     protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         if(world.isClient) return ActionResult.FAIL;
 
-        //world.setBlockState(pos, world.getBlockState(pos).with(ATTACKING, true));
-
-
         if(world.getBlockEntity(pos) instanceof HiddenHunterBlockEntity bE) {
             bE.setAttacking();
         }
         return ActionResult.SUCCESS;
+    }
+
+    @Override
+    protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        return Block.createCuboidShape(0, 0, 0, 16, 4, 16);
     }
 
     @Override

@@ -1,3 +1,19 @@
 {
-  "item.levoria.dowsing_rod": "Wünschelrute"
+  "itemgroup.levoria": "Levoria",
+
+  "item.levoria.dowsing_rod": "Wünschelrute",
+
+  "block.levoria.moon_stone": "Mondgestein",
+  "item.levoria.moon_stone": "Mondgestein",
+  "block.levoria.moon_stone_stairs": "Mondgesteins Treppen",
+  "item.levoria.moon_stone_stairs": "Mondgesteins Treppen",
+  "block.levoria.moon_stone_slab": "Mondgesteins Stufen",
+  "item.levoria.moon_stone_slab": "Mondgesteins Stufen",
+  "block.levoria.moon_stone_button": "Mondgesteins Knopf",
+  "item.levoria.moon_stone_button": "Mondgesteins Knopf",
+  "block.levoria.moon_stone_pressure_plate": "Mondgesteins Druckplatte",
+  "item.levoria.moon_stone_pressure_plate": "Mondgesteins Druckplatte",
+  "block.levoria.moon_stone_wall": "Mondgesteins Mauer",
+  "item.levoria.moon_stone_wall": "Mondgesteins Mauer",
+  "item.levoria.dowsing_rod.tooltip.error": "Error while loading current selected entry."
 }

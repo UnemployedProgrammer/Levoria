@@ -1,4 +1,4 @@
-// 1.21.3	2024-12-23T15:01:30.1701407	Levoria/Model Definitions
+// 1.21.3	2024-12-24T09:05:27.6203226	Levoria/Model Definitions
 2b103854637eb8d75d8d2a17cd1bd5f8fd19000b assets\levoria\models\block\moon_stone_slab_top.json
 cdaa241319a76e3f2d0840773a4170c8382f2ebe assets\levoria\models\block\moon_stone_wall_side.json
 5269877b39f60d914e8bffc0624076171a1d903d assets\levoria\models\item\moon_stone_pressure_plate.json
@@ -18,6 +18,7 @@ c242b7649f2689c56236a0f8a5097176de7e996c assets\levoria\models\block\moon_stone_
 498a706cb6c8adccaa9aa13b34f18419381719b1 assets\levoria\models\block\moon_stone_pressure_plate.json
 0cde5107fba5fd8e3fa1b74bbde73a1d8ea5f87c assets\levoria\models\item\moon_stone_slab.json
 f83a16e39cd9ae108a61e3a86a68f077f8f876f0 assets\levoria\models\block\moon_stone_stairs_inner.json
+10ce3afb5106f7930128d874d1be62e771c9464d assets\levoria\models\item\hidden_hunter.json
 bb8179000196c8884f561d56d0b67a264f22c6ee assets\levoria\models\block\moon_stone_button_pressed.json
 37b93ac8aa2a038f90597eec63d59e2502be6ce8 assets\levoria\blockstates\moon_stone_wall.json
 c7fb374f7254da2b78464ad2c4d89f37bcfb3189 assets\levoria\blockstates\moon_stone_stairs.json
