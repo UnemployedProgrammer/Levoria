@@ -86,7 +86,7 @@ public class HiddenHunterBlockEntity extends BlockEntity implements GeoBlockEnti
     protected <E extends HiddenHunterBlockEntity> PlayState deployAnimController(final AnimationState<E> state) {
         try {
             //System.out.println(attacking);
-            if(attacking ) {
+            if(attacking) {
                 state.getController().forceAnimationReset();
                 state.getController().setAnimation(RawAnimation.begin().thenPlay("animation.hiddenhunter.attack"));
                 attacking = false;

@@ -5,6 +5,12 @@
     "levoria:moon_stone_stairs",
     "levoria:moon_stone_wall",
     "levoria:moon_stone_pressure_plate",
-    "levoria:moon_stone_button"
+    "levoria:moon_stone_button",
+    "levoria:moon_bricks",
+    "levoria:moon_bricks_slab",
+    "levoria:moon_bricks_stairs",
+    "levoria:moon_bricks_wall",
+    "levoria:moon_bricks_pressure_plate",
+    "levoria:moon_bricks_button"
   ]
 }

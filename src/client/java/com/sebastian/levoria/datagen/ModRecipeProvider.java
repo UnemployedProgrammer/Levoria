@@ -89,6 +89,29 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 createButtonRecipe(ModBlocks.MOON_STONE_BUTTON, Ingredient.ofItem(ModBlocks.MOON_STONE))
                         .criterion(hasItem(ModBlocks.MOON_STONE_BUTTON), conditionsFromItem(ModBlocks.MOON_STONE_BUTTON))
                         .offerTo(exporter);
+
+                //BRICKS
+
+                createShaped(RecipeCategory.MISC, ModBlocks.MOON_BRICKS.asItem())
+                        .pattern("BB")
+                        .pattern("BB")
+                        .input('B', ModBlocks.MOON_STONE.asItem())
+                        .criterion(hasItem(ModBlocks.MOON_STONE.asItem()), conditionsFromItem(ModBlocks.MOON_STONE.asItem()))
+                        .offerTo(exporter);
+
+                createSlabRecipe(RecipeCategory.BUILDING_BLOCKS, ModBlocks.MOON_BRICKS_SLAB, Ingredient.ofItem(ModBlocks.MOON_BRICKS))
+                        .criterion(hasItem(ModBlocks.MOON_BRICKS_SLAB), conditionsFromItem(ModBlocks.MOON_BRICKS_SLAB))
+                        .offerTo(exporter);
+
+                createStairsRecipe(ModBlocks.MOON_BRICKS_STAIRS, Ingredient.ofItem(ModBlocks.MOON_BRICKS))
+                        .criterion(hasItem(ModBlocks.MOON_BRICKS_STAIRS), conditionsFromItem(ModBlocks.MOON_BRICKS_STAIRS))
+                        .offerTo(exporter);
+
+                offerWallRecipe(RecipeCategory.BUILDING_BLOCKS, ModBlocks.MOON_BRICKS_WALL, ModBlocks.MOON_BRICKS);
+                offerPressurePlateRecipe(ModBlocks.MOON_BRICKS_PRESSURE_PLATE, ModBlocks.MOON_BRICKS);
+                createButtonRecipe(ModBlocks.MOON_BRICKS_BUTTON, Ingredient.ofItem(ModBlocks.MOON_BRICKS))
+                        .criterion(hasItem(ModBlocks.MOON_BRICKS_BUTTON), conditionsFromItem(ModBlocks.MOON_BRICKS_BUTTON))
+                        .offerTo(exporter);
             }
         };
     }

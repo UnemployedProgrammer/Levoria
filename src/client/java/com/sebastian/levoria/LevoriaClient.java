@@ -1,11 +1,13 @@
 package com.sebastian.levoria;
 
+import com.sebastian.levoria.block.ModBlocks;
 import com.sebastian.levoria.block.entity.ModBlockEntities;
 import com.sebastian.levoria.block_entity_renderer.HiddenHunterBlockEntityRenderer;
 import com.sebastian.levoria.effects.MoonDimensionEffects;
 import com.sebastian.levoria.network.HighlightBlockS2C;
 import com.sebastian.levoria.network.TotemAnimationS2C;
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
@@ -93,6 +95,8 @@ public class LevoriaClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
 		BlockEntityRendererRegistry.register(ModBlockEntities.HIDDEN_HUNTER, HiddenHunterBlockEntityRenderer::new);
+		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.MOON_BERRY_BUSH, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SHADOW_WOOD_SAPLING, RenderLayer.getCutout());
 		applyDimensionEffect(new MoonDimensionEffects(), Levoria.getId("moon"));
 
 		ClientPlayNetworking.registerGlobalReceiver(TotemAnimationS2C.ID, (payload, context) -> {

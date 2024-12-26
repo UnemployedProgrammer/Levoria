@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "levoria:block/shadowwood_sapling"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "levoria:block/shadowwood_log",
+    "side": "levoria:block/shadowwood_log"
+  }
+}

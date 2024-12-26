@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/leaves",
+  "textures": {
+    "all": "levoria:block/shadowwood_leaves"
+  }
+}

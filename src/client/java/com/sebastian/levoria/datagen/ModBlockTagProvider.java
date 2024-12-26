@@ -25,6 +25,13 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                         .add(ModBlocks.MOON_STONE_WALL)
                         .add(ModBlocks.MOON_STONE_PRESSURE_PLATE)
                         .add(ModBlocks.MOON_STONE_BUTTON)
+
+                        .add(ModBlocks.MOON_BRICKS)
+                        .add(ModBlocks.MOON_BRICKS_SLAB)
+                        .add(ModBlocks.MOON_BRICKS_STAIRS)
+                        .add(ModBlocks.MOON_BRICKS_WALL)
+                        .add(ModBlocks.MOON_BRICKS_PRESSURE_PLATE)
+                        .add(ModBlocks.MOON_BRICKS_BUTTON)
         //                .add(ModBlocks.RAW_PINK_GARNET_BLOCK)
         //                .add(ModBlocks.PINK_GARNET_ORE)
         //                .add(ModBlocks.PINK_GARNET_DEEPSLATE_ORE)
@@ -33,12 +40,20 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 
         getOrCreateTagBuilder(BlockTags.WALLS)
                 .add(ModBlocks.MOON_STONE_WALL)
+                .add(ModBlocks.MOON_BRICKS_WALL)
         ;
 
         getOrCreateTagBuilder(BlockTags.OVERWORLD_CARVER_REPLACEABLES)
                 .add(ModBlocks.MOON_STONE)
                 .add(Blocks.GRASS_BLOCK)
                 .add(Blocks.DIRT);
+
+        getOrCreateTagBuilder(BlockTags.LOGS_THAT_BURN)
+                .add(ModBlocks.SHADOW_WOOD_LOG)
+                .add(ModBlocks.SHADOW_WOOD_WOOD)
+                .add(ModBlocks.STRIPPED_SHADOW_WOOD_LOG)
+                .add(ModBlocks.STRIPPED_SHADOW_WOOD_WOOD)
+        ;
 
         //getOrCreateTagBuilder(ModTags.Items.ORES)
         //                        .add(Blocks.COAL_ORE)

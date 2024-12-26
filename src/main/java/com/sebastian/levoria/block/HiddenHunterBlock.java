@@ -21,6 +21,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import net.minecraft.world.block.WireOrientation;
 import org.jetbrains.annotations.Nullable;
 
 public class HiddenHunterBlock extends BlockWithEntity {
@@ -51,6 +52,20 @@ public class HiddenHunterBlock extends BlockWithEntity {
         }
         return ActionResult.SUCCESS;
     }
+
+    @Override
+    protected void neighborUpdate(BlockState state, World world, BlockPos pos, Block sourceBlock, @Nullable WireOrientation wireOrientation, boolean notify) {
+        if(!world.isClient()) {
+            if(world.isReceivingRedstonePower(pos)) {
+                if(world.getBlockEntity(pos) instanceof HiddenHunterBlockEntity bE) {
+                    bE.setAttacking();
+                }
+            }
+        }
+
+        super.neighborUpdate(state, world, pos, sourceBlock, wireOrientation, notify);
+    }
+
 
     @Override
     protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {

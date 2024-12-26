@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_moon_stone": {
+      "conditions": {
+        "items": [
+          {
+            "items": "levoria:moon_stone"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "levoria:moon_bricks"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_moon_stone"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "levoria:moon_bricks"
+    ]
+  }
+}

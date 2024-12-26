@@ -1,13 +1,10 @@
 package com.sebastian.levoria.datagen;
 
 import com.sebastian.levoria.block.ModBlocks;
+import com.sebastian.levoria.block.MoonBerryBush;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.data.client.*;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.item.ArmorItem;
-import net.minecraft.item.equipment.EquipmentModel;
-import net.minecraft.util.Identifier;
 
 public class ModModelProvider extends FabricModelProvider {
     public ModModelProvider(FabricDataOutput output) {
@@ -18,6 +15,7 @@ public class ModModelProvider extends FabricModelProvider {
     public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
 
         BlockStateModelGenerator.BlockTexturePool moonStonePool = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBlocks.MOON_STONE);
+        BlockStateModelGenerator.BlockTexturePool moonBricksPool = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBlocks.MOON_BRICKS);
         //blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.MOON_STONE);
 
         moonStonePool.slab(ModBlocks.MOON_STONE_SLAB);
@@ -25,6 +23,22 @@ public class ModModelProvider extends FabricModelProvider {
         moonStonePool.wall(ModBlocks.MOON_STONE_WALL);
         moonStonePool.button(ModBlocks.MOON_STONE_BUTTON);
         moonStonePool.pressurePlate(ModBlocks.MOON_STONE_PRESSURE_PLATE);
+
+        moonBricksPool.slab(ModBlocks.MOON_BRICKS_SLAB);
+        moonBricksPool.stairs(ModBlocks.MOON_BRICKS_STAIRS);
+        moonBricksPool.wall(ModBlocks.MOON_BRICKS_WALL);
+        moonBricksPool.button(ModBlocks.MOON_BRICKS_BUTTON);
+        moonBricksPool.pressurePlate(ModBlocks.MOON_BRICKS_PRESSURE_PLATE);
+
+        blockStateModelGenerator.registerTintableCrossBlockStateWithStages(ModBlocks.MOON_BERRY_BUSH, BlockStateModelGenerator.TintType.NOT_TINTED,
+                MoonBerryBush.AGE, 0, 1, 2, 3);
+
+        blockStateModelGenerator.registerLog(ModBlocks.SHADOW_WOOD_LOG).log(ModBlocks.SHADOW_WOOD_LOG).wood(ModBlocks.SHADOW_WOOD_WOOD);
+        blockStateModelGenerator.registerLog(ModBlocks.STRIPPED_SHADOW_WOOD_LOG).log(ModBlocks.STRIPPED_SHADOW_WOOD_LOG).wood(ModBlocks.STRIPPED_SHADOW_WOOD_WOOD);
+
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.SHADOW_WOOD_PLANKS);
+        blockStateModelGenerator.registerSingleton(ModBlocks.SHADOW_WOOD_LEAVES, TexturedModel.LEAVES);
+        blockStateModelGenerator.registerTintableCrossBlockState(ModBlocks.SHADOW_WOOD_SAPLING, BlockStateModelGenerator.TintType.NOT_TINTED);
 
         /*
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.PINK_GARNET_ORE);
@@ -56,6 +70,7 @@ public class ModModelProvider extends FabricModelProvider {
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
 
         itemModelGenerator.register(ModBlocks.HIDDEN_HUNTER.asItem(), Models.GENERATED);
+        itemModelGenerator.register(ModBlocks.SHADOW_WOOD_SAPLING.asItem(), Models.GENERATED);
         //itemModelGenerator.register(ModItems.RAW_PINK_GARNET, Models.GENERATED);
 
         /*

@@ -16,8 +16,39 @@
   "block.levoria.moon_stone_wall": "Moon Stone Wall",
   "item.levoria.moon_stone_wall": "Moon Stone Wall",
 
+  "block.levoria.moon_bricks": "Moon Bricks",
+  "item.levoria.moon_bricks": "Moon Bricks",
+  "block.levoria.moon_bricks_stairs": "Moon Bricks Stairs",
+  "item.levoria.moon_bricks_stairs": "Moon Bricks Stairs",
+  "block.levoria.moon_bricks_slab": "Moon Bricks Slab",
+  "item.levoria.moon_bricks_slab": "Moon Bricks Slab",
+  "block.levoria.moon_bricks_button": "Moon Bricks Button",
+  "item.levoria.moon_bricks_button": "Moon Bricks Button",
+  "block.levoria.moon_bricks_pressure_plate": "Moon Bricks Pressure Plate",
+  "item.levoria.moon_bricks_pressure_plate": "Moon Bricks Pressure Plate",
+  "block.levoria.moon_bricks_wall": "Moon Bricks Wall",
+  "item.levoria.moon_bricks_wall": "Moon Bricks Wall",
   "block.levoria.hidden_hunter": "Hidden Hunter",
   "item.levoria.hidden_hunter": "Hidden Hunter",
+
+  "block.levoria.moon_berries_bush": "Hidden Hunter",
+  "item.levoria.moon_berries": "Moon Berries",
+
+  "block.levoria.shadowwood_log": "Shadow Log",
+  "item.levoria.shadowwood_log": "Shadow Log",
+  "block.levoria.shadowwood_wood": "Shadow Wood",
+  "item.levoria.shadowwood_wood": "Shadow Wood",
+  "block.levoria.stripped_shadowwood_log": "Stripped Shadow Log",
+  "item.levoria.stripped_shadowwood_log": "Stripped Shadow Log",
+  "block.levoria.stripped_shadowwood_wood": "Stripped Shadow Wood",
+  "item.levoria.stripped_shadowwood_wood": "Stripped Shadow Wood",
+  "block.levoria.shadowwood_planks": "Shadow Planks",
+  "item.levoria.shadowwood_planks": "Shadow Planks",
+  "block.levoria.shadowwood_leaves": "Shadow Leaves",
+  "item.levoria.shadowwood_leaves": "Shadow Leaves",
+  "block.levoria.shadowwood_sapling": "Shadow Sapling",
+  "item.levoria.shadowwood_sapling": "Shadow Sapling",
+
 
   "item.levoria.dowsing_rod.tooltip.error": "Error while loading current selected entry."
 }
