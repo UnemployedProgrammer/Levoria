@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "levoria:block/shadow_slab"
+    },
+    "type=double": {
+      "model": "levoria:block/shadowwood_planks"
+    },
+    "type=top": {
+      "model": "levoria:block/shadow_slab_top"
+    }
+  }
+}

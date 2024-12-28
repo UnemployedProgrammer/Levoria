@@ -104,31 +104,31 @@ public class ModBlocks {
     public static final Block SHADOW_STAIRS = registerBlock("shadow_stairs",
             new StairsBlock(ModBlocks.SHADOW_WOOD_PLANKS.getDefaultState(),
                     AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Levoria.getId("shadow_stairs")))
-                            .strength(2f).requiresTool()));
+                            .strength(2f).requiresTool().sounds(BlockSoundGroup.WOOD)));
     public static final Block SHADOW_SLAB = registerBlock("shadow_slab",
             new SlabBlock(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Levoria.getId("shadow_slab")))
-                    .strength(2f).requiresTool()));
+                    .strength(2f).requiresTool().sounds(BlockSoundGroup.WOOD)));
 
     public static final Block SHADOW_BUTTON = registerBlock("shadow_button",
             new ButtonBlock(BlockSetType.IRON, 2, AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Levoria.getId("shadow_button")))
-                    .strength(2f).requiresTool().noCollision()));
+                    .strength(2f).requiresTool().sounds(BlockSoundGroup.WOOD).noCollision()));
     public static final Block SHADOW_PRESSURE_PLATE = registerBlock("shadow_pressure_plate",
             new PressurePlateBlock(BlockSetType.IRON, AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Levoria.getId("shadow_pressure_plate")))
-                    .strength(2f).requiresTool()));
+                    .strength(2f).requiresTool().sounds(BlockSoundGroup.WOOD)));
 
     public static final Block SHADOW_FENCE = registerBlock("shadow_fence",
             new FenceBlock(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Levoria.getId("shadow_fence")))
-                    .strength(2f).requiresTool()));
+                    .strength(2f).requiresTool().sounds(BlockSoundGroup.WOOD)));
     public static final Block SHADOW_FENCE_GATE = registerBlock("shadow_fence_gate",
             new FenceGateBlock(WoodType.ACACIA, AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Levoria.getId("shadow_fence_gate")))
-                    .strength(2f).requiresTool()));
+                    .strength(2f).requiresTool().sounds(BlockSoundGroup.WOOD)));
 
     public static final Block SHADOW_DOOR = registerBlock("shadow_door",
             new DoorBlock(BlockSetType.IRON, AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Levoria.getId("shadow_door")))
-                    .strength(2f).requiresTool().nonOpaque()));
-    public static final Block SHADOW_TRAPDOOR = registerBlock("_trapdoor",
+                    .strength(2f).requiresTool().nonOpaque().sounds(BlockSoundGroup.WOOD)));
+    public static final Block SHADOW_TRAPDOOR = registerBlock("shadow_trapdoor",
             new TrapdoorBlock(BlockSetType.IRON, AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Levoria.getId("shadow_trapdoor")))
-                    .strength(2f).requiresTool().nonOpaque()));
+                    .strength(2f).requiresTool().nonOpaque().sounds(BlockSoundGroup.WOOD)));
 
     private static Block registerBlock(String name, Block block) {
         registerBlockItem(name, block);

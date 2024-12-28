@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_bottom_left_open",
+  "textures": {
+    "bottom": "levoria:block/shadow_door_bottom",
+    "top": "levoria:block/shadow_door_top"
+  }
+}

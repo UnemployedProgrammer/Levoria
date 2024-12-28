@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "levoria:block/shadow_pressure_plate"
+    },
+    "powered=true": {
+      "model": "levoria:block/shadow_pressure_plate_down"
+    }
+  }
+}

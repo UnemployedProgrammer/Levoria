@@ -15,6 +15,7 @@ public class ModModelProvider extends FabricModelProvider {
     public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
 
         BlockStateModelGenerator.BlockTexturePool moonStonePool = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBlocks.MOON_STONE);
+        BlockStateModelGenerator.BlockTexturePool moonBricksPool = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBlocks.MOON_BRICKS);
         BlockStateModelGenerator.BlockTexturePool shadowWoodPool = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBlocks.SHADOW_WOOD_PLANKS);
         //blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.MOON_STONE);
 
@@ -24,12 +25,19 @@ public class ModModelProvider extends FabricModelProvider {
         moonStonePool.button(ModBlocks.MOON_STONE_BUTTON);
         moonStonePool.pressurePlate(ModBlocks.MOON_STONE_PRESSURE_PLATE);
 
+        moonBricksPool.slab(ModBlocks.MOON_BRICKS_SLAB);
+        moonBricksPool.stairs(ModBlocks.MOON_BRICKS_STAIRS);
+        moonBricksPool.wall(ModBlocks.MOON_BRICKS_WALL);
+        moonBricksPool.button(ModBlocks.MOON_BRICKS_BUTTON);
+        moonBricksPool.pressurePlate(ModBlocks.MOON_BRICKS_PRESSURE_PLATE);
+
+
+        shadowWoodPool.slab(ModBlocks.SHADOW_SLAB);
+        shadowWoodPool.stairs(ModBlocks.SHADOW_STAIRS);
         shadowWoodPool.button(ModBlocks.SHADOW_BUTTON);
         shadowWoodPool.pressurePlate(ModBlocks.SHADOW_PRESSURE_PLATE);
-
         shadowWoodPool.fence(ModBlocks.SHADOW_FENCE);
         shadowWoodPool.fenceGate(ModBlocks.SHADOW_FENCE_GATE);
-
         blockStateModelGenerator.registerDoor(ModBlocks.SHADOW_DOOR);
         blockStateModelGenerator.registerTrapdoor(ModBlocks.SHADOW_TRAPDOOR);
 
@@ -40,7 +48,7 @@ public class ModModelProvider extends FabricModelProvider {
         blockStateModelGenerator.registerLog(ModBlocks.SHADOW_WOOD_LOG).log(ModBlocks.SHADOW_WOOD_LOG).wood(ModBlocks.SHADOW_WOOD_WOOD);
         blockStateModelGenerator.registerLog(ModBlocks.STRIPPED_SHADOW_WOOD_LOG).log(ModBlocks.STRIPPED_SHADOW_WOOD_LOG).wood(ModBlocks.STRIPPED_SHADOW_WOOD_WOOD);
 
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.SHADOW_WOOD_PLANKS);
+        //blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.SHADOW_WOOD_PLANKS);
         blockStateModelGenerator.registerSingleton(ModBlocks.SHADOW_WOOD_LEAVES, TexturedModel.LEAVES);
         blockStateModelGenerator.registerTintableCrossBlockState(ModBlocks.SHADOW_WOOD_SAPLING, BlockStateModelGenerator.TintType.NOT_TINTED);
 
