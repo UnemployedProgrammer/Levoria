@@ -7,7 +7,7 @@ import com.sebastian.levoria.item.ModItemGroups;
 import com.sebastian.levoria.item.ModItems;
 import com.sebastian.levoria.network.HighlightBlockS2C;
 import com.sebastian.levoria.network.TotemAnimationS2C;
-import com.sebastian.levoria.world.custom.ShadowTreeTrunkPlacer;
+import com.sebastian.levoria.world.tree.ShadowTreeTrunkPlacer;
 import com.sebastian.levoria.world.gen.ModWorldGen;
 import net.fabricmc.api.ModInitializer;
 

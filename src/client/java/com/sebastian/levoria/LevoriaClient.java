@@ -4,8 +4,10 @@ import com.sebastian.levoria.block.ModBlocks;
 import com.sebastian.levoria.block.entity.ModBlockEntities;
 import com.sebastian.levoria.block_entity_renderer.HiddenHunterBlockEntityRenderer;
 import com.sebastian.levoria.effects.MoonDimensionEffects;
+import com.sebastian.levoria.effects.ScreenShakeEffect;
 import com.sebastian.levoria.network.HighlightBlockS2C;
 import com.sebastian.levoria.network.TotemAnimationS2C;
+import com.sebastian.levoria.util.ShakeScreenEffectHandler;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
@@ -94,6 +96,7 @@ public class LevoriaClient implements ClientModInitializer {
 
 	@Override
 	public void onInitializeClient() {
+		ScreenShakeEffect.INSTANCE = new ScreenShakeEffect();
 		BlockEntityRendererRegistry.register(ModBlockEntities.HIDDEN_HUNTER, HiddenHunterBlockEntityRenderer::new);
 		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.MOON_BERRY_BUSH, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SHADOW_WOOD_SAPLING, RenderLayer.getCutout());
@@ -111,6 +114,7 @@ public class LevoriaClient implements ClientModInitializer {
 			context.client().execute(() -> {
 				highlightedBlocks.add(new BlockHighlightInstance(payload.block(), 160, context.client().world.getBlockState(payload.block())));
 				Levoria.LOGGER.info("Going to highlight block at " + payload.block().toShortString());
+				ScreenShakeEffect.INSTANCE.shakeScreen(20);
 			});
 		});
 

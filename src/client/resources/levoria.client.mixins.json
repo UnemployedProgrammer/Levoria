@@ -3,7 +3,7 @@
 	"package": "com.sebastian.levoria.mixin.client",
 	"compatibilityLevel": "JAVA_21",
 	"client": [
-      "BlockStateLuminanceClientMixin", "RenderSkyInCustomDimensionsMixin"
+      "BlockStateLuminanceClientMixin", "RenderSkyInCustomDimensionsMixin", "CameraMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

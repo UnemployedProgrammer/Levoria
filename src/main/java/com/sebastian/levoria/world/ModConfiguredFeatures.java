@@ -2,7 +2,7 @@ package com.sebastian.levoria.world;
 
 import com.sebastian.levoria.Levoria;
 import com.sebastian.levoria.block.ModBlocks;
-import com.sebastian.levoria.world.custom.ShadowTreeTrunkPlacer;
+import com.sebastian.levoria.world.tree.ShadowTreeTrunkPlacer;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
@@ -14,7 +14,6 @@ import net.minecraft.world.gen.feature.TreeFeatureConfig;
 import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize;
 import net.minecraft.world.gen.foliage.BlobFoliagePlacer;
 import net.minecraft.world.gen.stateprovider.BlockStateProvider;
-import net.minecraft.world.gen.trunk.StraightTrunkPlacer;
 
 public class ModConfiguredFeatures {
 

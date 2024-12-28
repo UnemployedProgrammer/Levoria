@@ -1,4 +1,4 @@
-package com.sebastian.levoria.world.custom;
+package com.sebastian.levoria.world.tree;
 
 
 import com.google.common.collect.ImmutableList;
@@ -7,7 +7,6 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.sebastian.levoria.Levoria;
 import com.sebastian.levoria.block.ModBlocks;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -67,6 +66,7 @@ public class ShadowTreeTrunkPlacer extends TrunkPlacer {
         // Create a foliage node at the top
         return ImmutableList.of(new FoliagePlacer.TreeNode(mutablePos, 0, false));
     }
+
 
     // Helper method to place stairs around the base of the tree
     private void placeStairsAroundBase(TestableWorld world, BiConsumer<BlockPos, BlockState> replacer, BlockPos basePos, TreeFeatureConfig config) {
