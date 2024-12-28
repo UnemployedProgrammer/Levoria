@@ -55,6 +55,9 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.STRIPPED_SHADOW_WOOD_WOOD)
         ;
 
+        getOrCreateTagBuilder(BlockTags.FENCES).add(ModBlocks.SHADOW_FENCE);
+        getOrCreateTagBuilder(BlockTags.FENCE_GATES).add(ModBlocks.SHADOW_FENCE_GATE);
+
         //getOrCreateTagBuilder(ModTags.Items.ORES)
         //                        .add(Blocks.COAL_ORE)
         //                        .add(Blocks.DEEPSLATE_COAL_ORE)

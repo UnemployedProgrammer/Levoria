@@ -15,7 +15,7 @@ public class ModModelProvider extends FabricModelProvider {
     public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
 
         BlockStateModelGenerator.BlockTexturePool moonStonePool = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBlocks.MOON_STONE);
-        BlockStateModelGenerator.BlockTexturePool moonBricksPool = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBlocks.MOON_BRICKS);
+        BlockStateModelGenerator.BlockTexturePool shadowWoodPool = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBlocks.SHADOW_WOOD_PLANKS);
         //blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.MOON_STONE);
 
         moonStonePool.slab(ModBlocks.MOON_STONE_SLAB);
@@ -24,11 +24,15 @@ public class ModModelProvider extends FabricModelProvider {
         moonStonePool.button(ModBlocks.MOON_STONE_BUTTON);
         moonStonePool.pressurePlate(ModBlocks.MOON_STONE_PRESSURE_PLATE);
 
-        moonBricksPool.slab(ModBlocks.MOON_BRICKS_SLAB);
-        moonBricksPool.stairs(ModBlocks.MOON_BRICKS_STAIRS);
-        moonBricksPool.wall(ModBlocks.MOON_BRICKS_WALL);
-        moonBricksPool.button(ModBlocks.MOON_BRICKS_BUTTON);
-        moonBricksPool.pressurePlate(ModBlocks.MOON_BRICKS_PRESSURE_PLATE);
+        shadowWoodPool.button(ModBlocks.SHADOW_BUTTON);
+        shadowWoodPool.pressurePlate(ModBlocks.SHADOW_PRESSURE_PLATE);
+
+        shadowWoodPool.fence(ModBlocks.SHADOW_FENCE);
+        shadowWoodPool.fenceGate(ModBlocks.SHADOW_FENCE_GATE);
+
+        blockStateModelGenerator.registerDoor(ModBlocks.SHADOW_DOOR);
+        blockStateModelGenerator.registerTrapdoor(ModBlocks.SHADOW_TRAPDOOR);
+
 
         blockStateModelGenerator.registerTintableCrossBlockStateWithStages(ModBlocks.MOON_BERRY_BUSH, BlockStateModelGenerator.TintType.NOT_TINTED,
                 MoonBerryBush.AGE, 0, 1, 2, 3);

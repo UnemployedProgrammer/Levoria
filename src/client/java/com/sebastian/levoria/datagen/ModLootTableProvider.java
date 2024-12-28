@@ -54,6 +54,18 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
             addDrop(ModBlocks.SHADOW_WOOD_SAPLING);
             addDrop(ModBlocks.SHADOW_WOOD_LEAVES, leavesDrops(ModBlocks.SHADOW_WOOD_LEAVES, ModBlocks.SHADOW_WOOD_SAPLING, 0.125f));
 
+            addDrop(ModBlocks.SHADOW_STAIRS);
+            addDrop(ModBlocks.SHADOW_SLAB, slabDrops(ModBlocks.SHADOW_SLAB));
+
+            addDrop(ModBlocks.SHADOW_BUTTON);
+            addDrop(ModBlocks.SHADOW_PRESSURE_PLATE);
+
+            addDrop(ModBlocks.SHADOW_FENCE);
+            addDrop(ModBlocks.SHADOW_FENCE_GATE);
+
+            addDrop(ModBlocks.SHADOW_DOOR, doorDrops(ModBlocks.SHADOW_DOOR));
+            addDrop(ModBlocks.SHADOW_TRAPDOOR);
+
 
             this.addDrop(ModBlocks.MOON_BERRY_BUSH,
                     block -> this.applyExplosionDecay(
@@ -69,12 +81,12 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
                                     .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 2.0F)))
                                     .apply(ApplyBonusLootFunction.uniformBonusCount(impl.getOrThrow(Enchantments.FORTUNE))))));
 
-            //addDrop(ModBlocks.PINK_GARNET_BLOCK);
-            //        addDrop(ModBlocks.RAW_PINK_GARNET_BLOCK);
+            //addDrop(ModBlocks.SHADOW_BLOCK);
+            //        addDrop(ModBlocks.RAW_SHADOW_BLOCK);
             //        addDrop(ModBlocks.MAGIC_BLOCK);
             //
-            //        addDrop(ModBlocks.PINK_GARNET_ORE, oreDrops(ModBlocks.PINK_GARNET_ORE, ModItems.RAW_PINK_GARNET));
-            //        addDrop(ModBlocks.PINK_GARNET_DEEPSLATE_ORE, multipleOreDrops(ModBlocks.PINK_GARNET_DEEPSLATE_ORE, ModItems.RAW_PINK_GARNET, 3, 7));
+            //        addDrop(ModBlocks.SHADOW_ORE, oreDrops(ModBlocks.SHADOW_ORE, ModItems.RAW_SHADOW));
+            //        addDrop(ModBlocks.SHADOW_DEEPSLATE_ORE, multipleOreDrops(ModBlocks.SHADOW_DEEPSLATE_ORE, ModItems.RAW_SHADOW, 3, 7));
         } catch (Exception e) {
             throw new RuntimeException("Error while running loottable datagen: " + e);
         }
