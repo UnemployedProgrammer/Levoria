@@ -101,6 +101,35 @@ public class ModBlocks {
             new SaplingBlock(ModSaplingGenerators.SHADOWWOOD, AbstractBlock.Settings.copy(Blocks.OAK_SAPLING).registryKey(RegistryKey.of(RegistryKeys.BLOCK, Levoria.getId("shadowwood_sapling"))))); //ModSaplingGenerators.DRIFTWOOD
 
 
+    public static final Block SHADOW_STAIRS = registerBlock("shadow_stairs",
+            new StairsBlock(ModBlocks.SHADOW_WOOD_PLANKS.getDefaultState(),
+                    AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Levoria.getId("shadow_stairs")))
+                            .strength(2f).requiresTool()));
+    public static final Block SHADOW_SLAB = registerBlock("shadow_slab",
+            new SlabBlock(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Levoria.getId("shadow_slab")))
+                    .strength(2f).requiresTool()));
+
+    public static final Block SHADOW_BUTTON = registerBlock("shadow_button",
+            new ButtonBlock(BlockSetType.IRON, 2, AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Levoria.getId("shadow_button")))
+                    .strength(2f).requiresTool().noCollision()));
+    public static final Block SHADOW_PRESSURE_PLATE = registerBlock("shadow_pressure_plate",
+            new PressurePlateBlock(BlockSetType.IRON, AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Levoria.getId("shadow_pressure_plate")))
+                    .strength(2f).requiresTool()));
+
+    public static final Block SHADOW_FENCE = registerBlock("shadow_fence",
+            new FenceBlock(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Levoria.getId("shadow_fence")))
+                    .strength(2f).requiresTool()));
+    public static final Block SHADOW_FENCE_GATE = registerBlock("shadow_fence_gate",
+            new FenceGateBlock(WoodType.ACACIA, AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Levoria.getId("shadow_fence_gate")))
+                    .strength(2f).requiresTool()));
+
+    public static final Block SHADOW_DOOR = registerBlock("shadow_door",
+            new DoorBlock(BlockSetType.IRON, AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Levoria.getId("shadow_door")))
+                    .strength(2f).requiresTool().nonOpaque()));
+    public static final Block SHADOW_TRAPDOOR = registerBlock("_trapdoor",
+            new TrapdoorBlock(BlockSetType.IRON, AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Levoria.getId("shadow_trapdoor")))
+                    .strength(2f).requiresTool().nonOpaque()));
+
     private static Block registerBlock(String name, Block block) {
         registerBlockItem(name, block);
         return Registry.register(Registries.BLOCK, Levoria.getId(name), block);
