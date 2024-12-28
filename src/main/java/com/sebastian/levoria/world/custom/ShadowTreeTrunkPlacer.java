@@ -5,7 +5,10 @@ import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.sebastian.levoria.Levoria;
+import com.sebastian.levoria.block.ModBlocks;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
@@ -57,7 +60,31 @@ public class ShadowTreeTrunkPlacer extends TrunkPlacer {
             }
         }
 
+        //set stairs around base
+
+        placeStairsAroundBase(world, replacer, startPos, config);
+
         // Create a foliage node at the top
         return ImmutableList.of(new FoliagePlacer.TreeNode(mutablePos, 0, false));
+    }
+
+    // Helper method to place stairs around the base of the tree
+    private void placeStairsAroundBase(TestableWorld world, BiConsumer<BlockPos, BlockState> replacer, BlockPos basePos, TreeFeatureConfig config) {
+        // Define stair block state
+        BlockState stairBlock = ModBlocks.SHADOW_STAIRS.getDefaultState();
+
+        // Place stairs in each direction
+        placeStair(world, replacer, basePos.north(), stairBlock.with(Properties.HORIZONTAL_FACING, Direction.SOUTH));
+        placeStair(world, replacer, basePos.south(), stairBlock.with(Properties.HORIZONTAL_FACING, Direction.NORTH));
+        placeStair(world, replacer, basePos.east(), stairBlock.with(Properties.HORIZONTAL_FACING, Direction.WEST));
+        placeStair(world, replacer, basePos.west(), stairBlock.with(Properties.HORIZONTAL_FACING, Direction.EAST));
+    }
+
+    // Helper method to set a stair block
+    private void placeStair(TestableWorld world, BiConsumer<BlockPos, BlockState> replacer, BlockPos pos, BlockState state) {
+        // Only place stairs if the space is air
+        if (world.testBlockState(pos, blockState -> blockState.isAir())) {
+            replacer.accept(pos, state);
+        }
     }
 }

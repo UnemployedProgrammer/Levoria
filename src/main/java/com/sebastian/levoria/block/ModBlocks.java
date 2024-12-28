@@ -124,10 +124,10 @@ public class ModBlocks {
                     .strength(2f).requiresTool().sounds(BlockSoundGroup.WOOD)));
 
     public static final Block SHADOW_DOOR = registerBlock("shadow_door",
-            new DoorBlock(BlockSetType.IRON, AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Levoria.getId("shadow_door")))
+            new DoorBlock(BlockSetType.OAK, AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Levoria.getId("shadow_door")))
                     .strength(2f).requiresTool().nonOpaque().sounds(BlockSoundGroup.WOOD)));
     public static final Block SHADOW_TRAPDOOR = registerBlock("shadow_trapdoor",
-            new TrapdoorBlock(BlockSetType.IRON, AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Levoria.getId("shadow_trapdoor")))
+            new TrapdoorBlock(BlockSetType.OAK, AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Levoria.getId("shadow_trapdoor")))
                     .strength(2f).requiresTool().nonOpaque().sounds(BlockSoundGroup.WOOD)));
 
     private static Block registerBlock(String name, Block block) {
