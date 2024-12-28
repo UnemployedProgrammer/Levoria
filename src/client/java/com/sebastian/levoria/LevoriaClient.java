@@ -114,7 +114,7 @@ public class LevoriaClient implements ClientModInitializer {
 			context.client().execute(() -> {
 				highlightedBlocks.add(new BlockHighlightInstance(payload.block(), 160, context.client().world.getBlockState(payload.block())));
 				Levoria.LOGGER.info("Going to highlight block at " + payload.block().toShortString());
-				ScreenShakeEffect.INSTANCE.shakeScreen(20);
+				ScreenShakeEffect.INSTANCE.shakeScreen(10, 0.1f);
 			});
 		});
 
@@ -137,6 +137,8 @@ public class LevoriaClient implements ClientModInitializer {
 					iterator.remove(); // Safe removal
 				}
 			}
+
+			ScreenShakeEffect.INSTANCE.updateShake();
 		});
 	}
 

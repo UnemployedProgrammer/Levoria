@@ -21,6 +21,7 @@ public class CameraMixin {
         }
 
         var MC = MinecraftClient.getInstance();
+        float intensity = ScreenShakeEffect.INSTANCE.getShakeIntensity();
         var player = MC.player;
 
         if (player == null) {
@@ -31,8 +32,16 @@ public class CameraMixin {
         var shakeOffset = new Vector3f();
 
         // Add simple shake logic
-        shakeRotation.set((float) (Math.random() - 0.5), (float) (Math.random() - 0.5), (float) (Math.random() - 0.5));
-        shakeOffset.set((float) (Math.random() - 0.5), (float) (Math.random() - 0.5), (float) (Math.random() - 0.5));
+        shakeRotation.set(
+                (float) (Math.random() - 0.5) * intensity,
+                (float) (Math.random() - 0.5) * intensity,
+                (float) (Math.random() - 0.5) * intensity
+        );
+        shakeOffset.set(
+                (float) (Math.random() - 0.5) * intensity,
+                (float) (Math.random() - 0.5) * intensity,
+                (float) (Math.random() - 0.5) * intensity
+        );
 
         var camera = MC.gameRenderer.getCamera();
         var inverseRotation = new Quaternionf(camera.getRotation()).conjugate();
