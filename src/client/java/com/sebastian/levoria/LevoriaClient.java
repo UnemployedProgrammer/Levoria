@@ -6,6 +6,7 @@ import com.sebastian.levoria.block_entity_renderer.HiddenHunterBlockEntityRender
 import com.sebastian.levoria.effects.MoonDimensionEffects;
 import com.sebastian.levoria.effects.ScreenShakeEffect;
 import com.sebastian.levoria.network.HighlightBlockS2C;
+import com.sebastian.levoria.network.ShakeScreenS2C;
 import com.sebastian.levoria.network.TotemAnimationS2C;
 import com.sebastian.levoria.util.ShakeScreenEffectHandler;
 import net.fabricmc.api.ClientModInitializer;
@@ -114,7 +115,12 @@ public class LevoriaClient implements ClientModInitializer {
 			context.client().execute(() -> {
 				highlightedBlocks.add(new BlockHighlightInstance(payload.block(), 160, context.client().world.getBlockState(payload.block())));
 				Levoria.LOGGER.info("Going to highlight block at " + payload.block().toShortString());
-				ScreenShakeEffect.INSTANCE.shakeScreen(10, 0.1f);
+			});
+		});
+
+		ClientPlayNetworking.registerGlobalReceiver(ShakeScreenS2C.ID, (payload, context) -> {
+			context.client().execute(() -> {
+				ScreenShakeEffect.INSTANCE.shakeScreen(payload.duration(), payload.strength());
 			});
 		});
 

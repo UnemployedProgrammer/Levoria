@@ -6,6 +6,7 @@ import com.sebastian.levoria.item.ModDataComponentTypes;
 import com.sebastian.levoria.item.ModItemGroups;
 import com.sebastian.levoria.item.ModItems;
 import com.sebastian.levoria.network.HighlightBlockS2C;
+import com.sebastian.levoria.network.ShakeScreenS2C;
 import com.sebastian.levoria.network.TotemAnimationS2C;
 import com.sebastian.levoria.world.tree.ShadowTreeEffects;
 import com.sebastian.levoria.world.tree.ShadowTreeTrunkPlacer;
@@ -51,6 +52,7 @@ public class Levoria implements ModInitializer {
 		//PACKETS
 		PayloadTypeRegistry.playS2C().register(TotemAnimationS2C.ID, TotemAnimationS2C.PACKET_CODEC);
 		PayloadTypeRegistry.playS2C().register(HighlightBlockS2C.ID, HighlightBlockS2C.PACKET_CODEC);
+		PayloadTypeRegistry.playS2C().register(ShakeScreenS2C.ID, ShakeScreenS2C.PACKET_CODEC);
 
 		//SELF-EXPLANATORY
 
