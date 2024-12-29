@@ -7,6 +7,7 @@ import com.sebastian.levoria.item.ModItemGroups;
 import com.sebastian.levoria.item.ModItems;
 import com.sebastian.levoria.network.HighlightBlockS2C;
 import com.sebastian.levoria.network.TotemAnimationS2C;
+import com.sebastian.levoria.world.tree.ShadowTreeEffects;
 import com.sebastian.levoria.world.tree.ShadowTreeTrunkPlacer;
 import com.sebastian.levoria.world.gen.ModWorldGen;
 import net.fabricmc.api.ModInitializer;
@@ -64,6 +65,9 @@ public class Levoria implements ModInitializer {
 		FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.STRIPPED_SHADOW_WOOD_WOOD, 5, 5);
 		FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.SHADOW_WOOD_PLANKS, 5, 20);
 		FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.SHADOW_WOOD_LEAVES, 30, 60);
+
+		// TreeEffects
+		ShadowTreeEffects.registerIt();
 	}
 
 	public static Identifier getId(String sub) {

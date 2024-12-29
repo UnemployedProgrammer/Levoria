@@ -1,11 +1,10 @@
-package com.sebastian.levoria.events;
+package com.sebastian.levoria.mixin;
 
+import com.sebastian.levoria.events.TreeGrowCallback;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SaplingBlock;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
 import org.spongepowered.asm.mixin.Mixin;

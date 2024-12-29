@@ -3,7 +3,7 @@
 	"package": "com.sebastian.levoria.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
-		"ExampleMixin"
+		"TreeGrowMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
