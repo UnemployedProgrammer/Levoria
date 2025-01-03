@@ -113,7 +113,7 @@ public class LevoriaClient implements ClientModInitializer {
 
 		ClientPlayNetworking.registerGlobalReceiver(HighlightBlockS2C.ID, (payload, context) -> {
 			context.client().execute(() -> {
-				highlightedBlocks.add(new BlockHighlightInstance(payload.block(), 160, context.client().world.getBlockState(payload.block())));
+				highlightedBlocks.add(new BlockHighlightInstance(payload.block(), payload.ticks(), context.client().world.getBlockState(payload.block())));
 				Levoria.LOGGER.info("Going to highlight block at " + payload.block().toShortString());
 			});
 		});

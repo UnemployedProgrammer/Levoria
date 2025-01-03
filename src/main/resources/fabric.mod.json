@@ -23,7 +23,8 @@
 		],
 		"fabric-datagen": [
 			"com.sebastian.levoria.LevoriaDataGenerator"
-		]
+		],
+		"modmenu": [ "com.sebastian.levoria.ModMenuEntry" ]
 	},
 	"mixins": [
 		"levoria.mixins.json",
@@ -40,5 +41,16 @@
 	},
 	"suggests": {
 		"another-mod": "*"
+	},
+
+	"custom": {
+		"modmenu": {
+			"links": {
+
+			},
+			"badges": [  ],
+
+			"update_checker": false
+		}
 	}
 }

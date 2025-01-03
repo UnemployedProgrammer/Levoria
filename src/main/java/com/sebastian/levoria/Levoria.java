@@ -20,6 +20,7 @@ import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.server.dedicated.MinecraftDedicatedServer;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.gen.trunk.TrunkPlacerType;
 import org.slf4j.Logger;
@@ -74,6 +75,8 @@ public class Levoria implements ModInitializer {
 
 		//COMMANDS
 		Commands.registerCommands();
+
+
 	}
 
 	public static Identifier getId(String sub) {

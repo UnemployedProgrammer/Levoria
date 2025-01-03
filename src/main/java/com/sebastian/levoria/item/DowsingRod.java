@@ -113,8 +113,8 @@ public class DowsingRod extends Item {
                 for (BlockPos blockPos : getSphereAroundPlayer(user, 10)) {
                     //System.out.println("Found at " + blockPos.toString() + " block: " + world.getBlockState(blockPos).getBlock().getName());
                     if (world.getBlockState(blockPos).isOf(oreBlocks.get(current - 1))) {
-                        System.out.println("Found!");
-                        ServerPlayNetworking.send(user.getServer().getPlayerManager().getPlayer(user.getUuid()), new HighlightBlockS2C(blockPos));
+                        //System.out.println("Found!");
+                        ServerPlayNetworking.send(user.getServer().getPlayerManager().getPlayer(user.getUuid()), new HighlightBlockS2C(blockPos, 160));
                     }
                 }
 
