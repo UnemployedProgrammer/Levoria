@@ -1,23 +1,25 @@
 package com.sebastian.levoria.world;
 
 import com.sebastian.levoria.Levoria;
+import com.sebastian.levoria.block.ModBlocks;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.FeatureConfig;
-import net.minecraft.world.gen.feature.PlacedFeature;
+import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.placementmodifier.PlacementModifier;
 
 import java.util.List;
 
 public class ModPlacedFeatures {
 
+    public static final RegistryKey<PlacedFeature> SHADOW_WOOD_PLACED_KEY = registerKey("shadow_wood_placed");
+
     public static void bootstrap(Registerable<PlacedFeature> context) {
         var configuredFeatures = context.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
+
+        register(context, SHADOW_WOOD_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.SHADOW_WOOD_KEY), VegetationPlacedFeatures.treeModifiersWithWouldSurvive(PlacedFeatures.createCountExtraModifier(2, 0.1f, 2), ModBlocks.SHADOW_WOOD_SAPLING));
 
     }
 
