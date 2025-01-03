@@ -25,31 +25,34 @@ public class Commands {
         public static void registerCommands() {
             CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
                 dispatcher.register(literal("shakescreen").requires((source) -> source.hasPermissionLevel(2))
-                        .then(CommandManager.literal("stop"))
-                        .then(argument("targets", EntityArgumentType.players())
-                        .executes(context -> {
-                            final Collection<ServerPlayerEntity> players = EntityArgumentType.getPlayers(context, "targets");
-                            for (ServerPlayerEntity player : players) {
-                                ShakeScreenEffectHandler.stopShakingPlayer(player);
-                            }
-                            return 1;
-                        })
-                        .then(CommandManager.literal("add"))
-                        .then(argument("targets", EntityArgumentType.players())
-                        .then(argument("duration", IntegerArgumentType.integer())
-                        .then(argument("intensity", IntegerArgumentType.integer(0, 100))
-                                .executes(context -> {
-                                    final Collection<ServerPlayerEntity> players = EntityArgumentType.getPlayers(context, "targets");
-                                    final int duration = IntegerArgumentType.getInteger(context, "duration");
-                                    final int intensity = IntegerArgumentType.getInteger(context, "intensity");
-                                    final float intensityFloat = intensity * 0.01f;
+                        .then(CommandManager.literal("stop")
 
-                                    for (ServerPlayerEntity player : players) {
-                                        ShakeScreenEffectHandler.shakePlayer(player, duration, intensityFloat);
-                                    }
+                                .then(argument("targets", EntityArgumentType.players())
 
-                                    return 1;
-                                }))))));
+                                        .executes(context -> {
+                                            final Collection<ServerPlayerEntity> players = EntityArgumentType.getPlayers(context, "targets");
+                                                for (ServerPlayerEntity player : players) {
+                                                    ShakeScreenEffectHandler.stopShakingPlayer(player);
+                                                }
+                                                return 1;
+                                        })))
+
+                                .then(CommandManager.literal("add")
+                                        .then(argument("targets", EntityArgumentType.players())
+                                                .then(argument("duration", IntegerArgumentType.integer())
+                                                        .then(argument("intensity", IntegerArgumentType.integer(0, 100))
+                                                                .executes(context -> {
+                                                                    final Collection<ServerPlayerEntity> players = EntityArgumentType.getPlayers(context, "targets");
+                                                                    final int duration = IntegerArgumentType.getInteger(context, "duration");
+                                                                    final int intensity = IntegerArgumentType.getInteger(context, "intensity");
+                                                                    final float intensityFloat = intensity * 0.01f;
+
+                                                                    for (ServerPlayerEntity player : players) {
+                                                                        ShakeScreenEffectHandler.shakePlayer(player, duration, intensityFloat);
+                                                                    }
+
+                                                                    return 1;
+                                                                }))))));
             });
         }
 }
