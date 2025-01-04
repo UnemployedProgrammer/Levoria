@@ -1,0 +1,66 @@
+// Made with Blockbench 4.11.2
+// Exported for Minecraft version 1.17+ for Yarn
+// Paste this class into your mod and generate all required imports
+public class levoria:alien extends EntityModel<Alien> {
+	private final ModelPart alien;
+	private final ModelPart leg1;
+	private final ModelPart leg2;
+	private final ModelPart body;
+	private final ModelPart arm1;
+	private final ModelPart arm2;
+	private final ModelPart head;
+	private final ModelPart antenna;
+	private final ModelPart top;
+	public levoria:alien(ModelPart root) {
+		this.alien = root.getChild("alien");
+		this.leg1 = this.alien.getChild("leg1");
+		this.leg2 = this.alien.getChild("leg2");
+		this.body = this.alien.getChild("body");
+		this.arm1 = this.alien.getChild("arm1");
+		this.arm2 = this.alien.getChild("arm2");
+		this.head = this.alien.getChild("head");
+		this.antenna = this.alien.getChild("antenna");
+		this.top = this.antenna.getChild("top");
+	}
+	public static TexturedModelData getTexturedModelData() {
+		ModelData modelData = new ModelData();
+		ModelPartData modelPartData = modelData.getRoot();
+		ModelPartData alien = modelPartData.addChild("alien", ModelPartBuilder.create(), ModelTransform.pivot(0.0F, 24.0F, 0.0F));
+
+		ModelPartData leg1 = alien.addChild("leg1", ModelPartBuilder.create().uv(32, 39).cuboid(0.0F, 2.0F, -1.0F, 1.0F, 7.0F, 2.0F, new Dilation(0.0F))
+		.uv(32, 34).cuboid(-1.0F, 9.0F, -3.0F, 2.0F, 1.0F, 4.0F, new Dilation(0.0F)), ModelTransform.pivot(-4.0F, -10.0F, 1.0F));
+
+		ModelPartData leg2 = alien.addChild("leg2", ModelPartBuilder.create().uv(36, 22).cuboid(-1.0F, 9.0F, -3.0F, 2.0F, 1.0F, 4.0F, new Dilation(0.0F))
+		.uv(38, 39).cuboid(-1.0F, 2.0F, -1.0F, 1.0F, 7.0F, 2.0F, new Dilation(0.0F)), ModelTransform.pivot(5.0F, -10.0F, 1.0F));
+
+		ModelPartData body = alien.addChild("body", ModelPartBuilder.create().uv(22, 14).cuboid(-5.0F, 3.0F, -1.0F, 9.0F, 4.0F, 4.0F, new Dilation(0.0F))
+		.uv(0, 0).cuboid(-6.0F, -5.0F, -2.0F, 11.0F, 8.0F, 6.0F, new Dilation(0.0F)), ModelTransform.pivot(1.0F, -15.0F, 0.0F));
+
+		ModelPartData arm1 = alien.addChild("arm1", ModelPartBuilder.create().uv(14, 28).cuboid(-1.0F, -1.0F, -1.0F, 1.0F, 11.0F, 2.0F, new Dilation(0.0F)), ModelTransform.pivot(-5.0F, -18.0F, 1.0F));
+
+		ModelPartData arm2 = alien.addChild("arm2", ModelPartBuilder.create().uv(34, 0).cuboid(0.0F, -1.0F, -1.0F, 1.0F, 11.0F, 2.0F, new Dilation(0.0F)), ModelTransform.pivot(6.0F, -18.0F, 1.0F));
+
+		ModelPartData head = alien.addChild("head", ModelPartBuilder.create().uv(36, 30).cuboid(-0.5F, -22.0F, 0.0F, 2.0F, 2.0F, 2.0F, new Dilation(0.0F))
+		.uv(0, 14).cuboid(-2.0F, -30.0F, -2.0F, 5.0F, 8.0F, 6.0F, new Dilation(0.0F))
+		.uv(36, 27).cuboid(-1.0F, -22.0F, -2.0F, 3.0F, 1.0F, 2.0F, new Dilation(0.0F))
+		.uv(22, 22).cuboid(-3.0F, -29.0F, -2.0F, 1.0F, 6.0F, 6.0F, new Dilation(0.0F))
+		.uv(0, 28).cuboid(3.0F, -29.0F, -2.0F, 1.0F, 6.0F, 6.0F, new Dilation(0.0F))
+		.uv(20, 34).cuboid(-2.0F, -29.0F, 4.0F, 5.0F, 6.0F, 1.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
+
+		ModelPartData antenna = alien.addChild("antenna", ModelPartBuilder.create().uv(0, 44).cuboid(0.0F, -4.0F, 0.0F, 1.0F, 4.0F, 1.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, -30.0F, 1.0F));
+
+		ModelPartData top = antenna.addChild("top", ModelPartBuilder.create(), ModelTransform.pivot(0.5F, -3.7F, 0.5F));
+
+		ModelPartData cube_r1 = top.addChild("cube_r1", ModelPartBuilder.create().uv(0, 44).cuboid(-1.0F, -2.0F, -1.0F, 2.0F, 2.0F, 2.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, -3.0F, 2.0F, -0.5236F, 0.0F, 0.0F));
+
+		ModelPartData cube_r2 = top.addChild("cube_r2", ModelPartBuilder.create().uv(0, 44).cuboid(-1.0F, -4.0F, 0.0F, 1.0F, 4.0F, 1.0F, new Dilation(0.0F)), ModelTransform.of(0.5F, -0.1F, -0.4F, -0.5236F, 0.0F, 0.0F));
+		return TexturedModelData.of(modelData, 64, 64);
+	}
+	@Override
+	public void setAngles(Alien entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+	}
+	@Override
+	public void render(MatrixStack matrices, VertexConsumer vertexConsumer, int light, int overlay, float red, float green, float blue, float alpha) {
+		alien.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
+	}
+}

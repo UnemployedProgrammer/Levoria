@@ -2,6 +2,7 @@ package com.sebastian.levoria.item;
 
 import com.mojang.authlib.minecraft.client.MinecraftClient;
 import com.sebastian.levoria.Levoria;
+import com.sebastian.levoria.config.ConfigManager;
 import com.sebastian.levoria.network.HighlightBlockS2C;
 import com.sebastian.levoria.network.TotemAnimationS2C;
 import com.sebastian.levoria.tags.ModTags;
@@ -110,11 +111,11 @@ public class DowsingRod extends Item {
                     current = 15;
 
 
-                for (BlockPos blockPos : getSphereAroundPlayer(user, 10)) {
+                for (BlockPos blockPos : getSphereAroundPlayer(user, ConfigManager.INSTANCE.getDowsingRodBaseRange())) {
                     //System.out.println("Found at " + blockPos.toString() + " block: " + world.getBlockState(blockPos).getBlock().getName());
                     if (world.getBlockState(blockPos).isOf(oreBlocks.get(current - 1))) {
                         //System.out.println("Found!");
-                        ServerPlayNetworking.send(user.getServer().getPlayerManager().getPlayer(user.getUuid()), new HighlightBlockS2C(blockPos, 160));
+                        ServerPlayNetworking.send(user.getServer().getPlayerManager().getPlayer(user.getUuid()), new HighlightBlockS2C(blockPos, ConfigManager.INSTANCE.getDowsingRodBaseDuration()));
                     }
                 }
 

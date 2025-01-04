@@ -1,6 +1,7 @@
 package com.sebastian.levoria.world.tree;
 
 import com.sebastian.levoria.block.ModBlocks;
+import com.sebastian.levoria.config.ConfigManager;
 import com.sebastian.levoria.events.TreeGrowCallback;
 import com.sebastian.levoria.util.RadiusHelper;
 import com.sebastian.levoria.util.ShakeScreenEffectHandler;
@@ -14,8 +15,10 @@ import net.minecraft.util.math.BlockPos;
 public class ShadowTreeEffects {
 
     public static void onGrow(ServerWorld world, BlockPos pos) {
-        for (ServerPlayerEntity playerInRadius : RadiusHelper.getPlayersInRadius(world, pos, 10)) {
-            ShakeScreenEffectHandler.shakePlayer(playerInRadius, 10, 0.1f);
+        if(ConfigManager.INSTANCE.isShakeScreenOnTreeGrow()) {
+            for (ServerPlayerEntity playerInRadius : RadiusHelper.getPlayersInRadius(world, pos, 10)) {
+                ShakeScreenEffectHandler.shakePlayer(playerInRadius, 10, 0.1f);
+            }
         }
     }
 

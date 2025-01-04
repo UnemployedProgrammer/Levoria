@@ -15,7 +15,52 @@ public class ConfigManager {
 
     public static Config INSTANCE = Config.defaultSettings();
 
-    public static record Config(boolean shakeScreenOnTreeGrow, int dowsingRodBaseRange, int dowsingRodBaseDuration) {public static Config defaultSettings() {return new Config(true, 10, 160);}}
+    public static class Config {
+        private boolean shakeScreenOnTreeGrow;
+        private int dowsingRodBaseRange, dowsingRodBaseDuration;
+
+        public Config(boolean shakeScreenOnTreeGrow, int dowsingRodBaseRange, int dowsingRodBaseDuration) {
+            this.shakeScreenOnTreeGrow = shakeScreenOnTreeGrow;
+            this.dowsingRodBaseRange = dowsingRodBaseRange;
+            this.dowsingRodBaseDuration = dowsingRodBaseDuration;
+        }
+
+        public boolean isShakeScreenOnTreeGrow() {
+            return shakeScreenOnTreeGrow;
+        }
+
+        public void setShakeScreenOnTreeGrow(boolean shakeScreenOnTreeGrow) {
+            this.shakeScreenOnTreeGrow = shakeScreenOnTreeGrow;
+        }
+
+        public int getDowsingRodBaseRange() {
+            return dowsingRodBaseRange;
+        }
+
+        public void setDowsingRodBaseRange(int dowsingRodBaseRange) {
+            this.dowsingRodBaseRange = dowsingRodBaseRange;
+        }
+
+        public int getDowsingRodBaseDuration() {
+            return dowsingRodBaseDuration;
+        }
+
+        public void setDowsingRodBaseDuration(int dowsingRodBaseDuration) {
+            this.dowsingRodBaseDuration = dowsingRodBaseDuration;
+        }
+
+        @Override
+        public String toString() {
+            final StringBuffer sb = new StringBuffer("Configuration: ");
+            sb.append("\n  - shakeScreenOnTreeGrow: ").append(shakeScreenOnTreeGrow);
+            sb.append("\n  - dowsingRodBaseRange: ").append(dowsingRodBaseRange);
+            sb.append("\n  - dowsingRodBaseDuration: ").append(dowsingRodBaseDuration);
+            return sb.toString();
+        }
+
+        public static Config defaultSettings() {return new Config(true, 10, 160);}
+
+    }
 
     public static File CONFIG_FILE = new File("./config/levoria_server.json");
 

@@ -2,6 +2,7 @@ package com.sebastian.levoria;
 
 import com.sebastian.levoria.block.ModBlocks;
 import com.sebastian.levoria.block.entity.ModBlockEntities;
+import com.sebastian.levoria.config.ConfigManager;
 import com.sebastian.levoria.item.ModDataComponentTypes;
 import com.sebastian.levoria.item.ModItemGroups;
 import com.sebastian.levoria.item.ModItems;
@@ -76,8 +77,11 @@ public class Levoria implements ModInitializer {
 		//COMMANDS
 		Commands.registerCommands();
 
-
+		//LOAD-CONFIG
+		ConfigManager.INSTANCE = ConfigManager.read();
 	}
+
+
 
 	public static Identifier getId(String sub) {
 		return Identifier.of(MOD_ID, sub);
