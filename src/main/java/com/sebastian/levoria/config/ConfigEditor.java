@@ -17,6 +17,7 @@ public class ConfigEditor {
      * @param changeStr Example: "shakeScreenTreeGrow=true,dowsingRodBaseRange=10,dowsingRodBaseDuration=160"
      Available Keys:
      - shakeScreenTreeGrow (bool)
+     - debugMode (bool)
      - dowsingRodBaseRange (int)
      - dowsingRodBaseDuration (int)
      */
@@ -46,6 +47,7 @@ public class ConfigEditor {
     /**
     Available Keys:
         - shakeScreenTreeGrow (bool)
+        - debugMode (bool)
         - dowsingRodBaseRange (int)
         - dowsingRodBaseDuration (int)
      */
@@ -56,6 +58,7 @@ public class ConfigEditor {
         try {
             switch (cfg) {
                 case "shakeScreenTreeGrow": CONFIG.setShakeScreenOnTreeGrow(Boolean.parseBoolean(newVal)); break;
+                case "debugMode": CONFIG.setDebugMode(Boolean.parseBoolean(newVal)); break;
                 case "dowsingRodBaseRange": CONFIG.setDowsingRodBaseRange(Integer.parseInt(newVal)); break;
                 case "dowsingRodBaseDuration": CONFIG.setDowsingRodBaseDuration(Integer.parseInt(newVal)); break;
                 case null, default: Levoria.LOGGER.warn("Invalid CONFIG key in editor: " + cfg); break;

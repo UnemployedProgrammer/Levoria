@@ -1,6 +1,7 @@
 package com.sebastian.levoria.datagen;
 
 import com.sebastian.levoria.block.ModBlocks;
+import com.sebastian.levoria.item.ModItems;
 import com.sebastian.levoria.tags.ModTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
@@ -18,10 +19,10 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
 
     @Override
     protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
-        //getOrCreateTagBuilder(ModTags.Items.TRANSFORMABLE_ITEMS)
+        getOrCreateTagBuilder(ModTags.Items.REACH_ENCHANTABLE)
         //                .add(Items.COAL)
         //                .add(Items.STICK)
-        //                .add(Items.APPLE);
+                        .add(ModItems.DOWSING_ROD);
 
         getOrCreateTagBuilder(ItemTags.LOGS_THAT_BURN)
                 .add(ModBlocks.SHADOW_WOOD_LOG.asItem())

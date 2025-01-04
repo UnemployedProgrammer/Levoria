@@ -2,6 +2,9 @@
   "itemgroup.levoria": "Levoria",
   "cfg.levoria": "Configure Levoria",
 
+  "enchantment.levoria.reach": "Reach",
+  "tag.item.levoria.reach_enchantable": "Reach",
+
   "item.levoria.dowsing_rod": "Dowsing Rod",
 
   "block.levoria.moon_stone": "Moon Stone",

@@ -1,8 +1,8 @@
-// 1.21.3	2024-12-28T16:53:20.5295183	Levoria/Tags for minecraft:block
-4cd3ad26ddf2983996d8c0275dcfc204c4b96a36 data\minecraft\tags\block\overworld_carver_replaceables.json
-cf0bb65ae673db8f1e1513bd29b42f0f797edd53 data\minecraft\tags\block\logs_that_burn.json
-9617711bb1c70548e9bce0027b01601d902f47a3 data\minecraft\tags\block\fence_gates.json
-40a0c3f94b609265da7f81b0bba9661b575b75bb data\minecraft\tags\block\walls.json
-d9680ff681aa42677a12e45e32e091b9ba5764db data\minecraft\tags\block\mineable\pickaxe.json
-35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data\minecraft\tags\block\needs_iron_tool.json
-41502817fee0be3aa850a57b731385758ff2b066 data\minecraft\tags\block\fences.json
+// 1.21.3	2025-01-04T17:22:13.232582098	Levoria/Tags for minecraft:block
+4cd3ad26ddf2983996d8c0275dcfc204c4b96a36 data/minecraft/tags/block/overworld_carver_replaceables.json
+35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/minecraft/tags/block/needs_iron_tool.json
+41502817fee0be3aa850a57b731385758ff2b066 data/minecraft/tags/block/fences.json
+d9680ff681aa42677a12e45e32e091b9ba5764db data/minecraft/tags/block/mineable/pickaxe.json
+9617711bb1c70548e9bce0027b01601d902f47a3 data/minecraft/tags/block/fence_gates.json
+cf0bb65ae673db8f1e1513bd29b42f0f797edd53 data/minecraft/tags/block/logs_that_burn.json
+40a0c3f94b609265da7f81b0bba9661b575b75bb data/minecraft/tags/block/walls.json

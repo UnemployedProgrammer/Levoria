@@ -15,7 +15,7 @@ public abstract class RenderSkyInCustomDimensionsMixin {
 
     @Inject(method = "renderMoon", at = @At("HEAD"), cancellable = true)
     private void customRenderSky(int phase, float alpha, Tessellator tesselator, MatrixStack matrices, CallbackInfo ci) {
-        if(MinecraftClient.getInstance().world.getDimension().effects().equals(Levoria.getId("moon"))) {
+        if(MinecraftClient.getInstance().world.getDimension().effects().equals(Levoria.id("moon"))) {
             ci.cancel();
             MoonSkyRenderer.renderEarth(alpha, tesselator, matrices);
         }

@@ -1,3 +1,4 @@
-// 1.21.3	2024-12-28T16:53:20.5315204	Levoria/Tags for minecraft:item
-cf0bb65ae673db8f1e1513bd29b42f0f797edd53 data\minecraft\tags\item\logs_that_burn.json
-ee9f5badc032dc7dbfdf84c9e7730f5904b345f7 data\minecraft\tags\item\planks.json
+// 1.21.3	2025-01-04T17:22:13.233536487	Levoria/Tags for minecraft:item
+cf0bb65ae673db8f1e1513bd29b42f0f797edd53 data/minecraft/tags/item/logs_that_burn.json
+ee9f5badc032dc7dbfdf84c9e7730f5904b345f7 data/minecraft/tags/item/planks.json
+c4468da86a237c4884f617aa99691ec7979423f3 data/levoria/tags/item/reach_enchantable.json

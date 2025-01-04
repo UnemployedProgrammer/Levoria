@@ -3,9 +3,11 @@ package com.sebastian.levoria;
 import com.sebastian.levoria.block.ModBlocks;
 import com.sebastian.levoria.block.entity.ModBlockEntities;
 import com.sebastian.levoria.config.ConfigManager;
+import com.sebastian.levoria.enchantment.ModEnchantmentEffects;
 import com.sebastian.levoria.item.ModDataComponentTypes;
 import com.sebastian.levoria.item.ModItemGroups;
 import com.sebastian.levoria.item.ModItems;
+import com.sebastian.levoria.network.DebugRenderingS2C;
 import com.sebastian.levoria.network.HighlightBlockS2C;
 import com.sebastian.levoria.network.ShakeScreenS2C;
 import com.sebastian.levoria.network.TotemAnimationS2C;
@@ -21,7 +23,6 @@ import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import net.minecraft.server.dedicated.MinecraftDedicatedServer;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.gen.trunk.TrunkPlacerType;
 import org.slf4j.Logger;
@@ -40,7 +41,7 @@ public class Levoria implements ModInitializer {
 	public void onInitialize() {
 
 		//Important -> Register Custom Tree Trunk Placers First!
-		Registry.register(Registries.TRUNK_PLACER_TYPE, Levoria.getId("shadow_tree_trunk_placer"), SHADOW_TRUNK_PLACER);
+		Registry.register(Registries.TRUNK_PLACER_TYPE, Levoria.id("shadow_tree_trunk_placer"), SHADOW_TRUNK_PLACER);
 
 		//Main Registration
 
@@ -48,6 +49,7 @@ public class Levoria implements ModInitializer {
 		ModDataComponentTypes.registerDataComponentTypes();
 		ModBlocks.registerModBlocks();
 		ModBlockEntities.registerModBlockEntities();
+		ModEnchantmentEffects.registerEnchantmentEffects();
 		ModItemGroups.registerModItemGrops();
 		ModWorldGen.generateModWorldGen();
 
@@ -56,6 +58,7 @@ public class Levoria implements ModInitializer {
 		PayloadTypeRegistry.playS2C().register(TotemAnimationS2C.ID, TotemAnimationS2C.PACKET_CODEC);
 		PayloadTypeRegistry.playS2C().register(HighlightBlockS2C.ID, HighlightBlockS2C.PACKET_CODEC);
 		PayloadTypeRegistry.playS2C().register(ShakeScreenS2C.ID, ShakeScreenS2C.PACKET_CODEC);
+		PayloadTypeRegistry.playS2C().register(DebugRenderingS2C.ID, DebugRenderingS2C.PACKET_CODEC);
 
 		//SELF-EXPLANATORY
 
@@ -78,12 +81,12 @@ public class Levoria implements ModInitializer {
 		Commands.registerCommands();
 
 		//LOAD-CONFIG
-		ConfigManager.INSTANCE = ConfigManager.read();
+		ConfigManager.registerConfigUn_Loaders();
 	}
 
 
 
-	public static Identifier getId(String sub) {
+	public static Identifier id(String sub) {
 		return Identifier.of(MOD_ID, sub);
 	}
 }

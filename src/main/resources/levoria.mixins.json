@@ -1,11 +1,12 @@
 {
-	"required": true,
-	"package": "com.sebastian.levoria.mixin",
-	"compatibilityLevel": "JAVA_21",
-	"mixins": [
-		"TreeGrowMixin"
-	],
-	"injectors": {
-		"defaultRequire": 1
+  "required": true,
+  "package": "com.sebastian.levoria.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "EntityMixin",
+    "TreeGrowMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
 	}
 }

@@ -3,6 +3,8 @@ package com.sebastian.levoria.item;
 import com.mojang.authlib.minecraft.client.MinecraftClient;
 import com.sebastian.levoria.Levoria;
 import com.sebastian.levoria.config.ConfigManager;
+import com.sebastian.levoria.enchantment.ModEnchantments;
+import com.sebastian.levoria.network.DebugRenderingS2C;
 import com.sebastian.levoria.network.HighlightBlockS2C;
 import com.sebastian.levoria.network.TotemAnimationS2C;
 import com.sebastian.levoria.tags.ModTags;
@@ -13,6 +15,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.component.ComponentType;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BowItem;
@@ -21,6 +24,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.registry.Registries;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -77,10 +81,13 @@ public class DowsingRod extends Item {
                 oreBlocks.add(Blocks.ANCIENT_DEBRIS);
             }
 
+            if(world.isClient) return ActionResult.PASS;
+
             if(user.isSneaking()) {
                 Integer next = user.getStackInHand(hand).set(ModDataComponentTypes.LOOKFOR_ORE, nextIndex(user, hand));
                 user.sendMessage(Text.literal("» ").append(oreBlocks.get(next).getName()).append(" «").formatted(Formatting.GREEN), true);
                 ServerPlayNetworking.send(user.getServer().getPlayerManager().getPlayer(user.getUuid()), new TotemAnimationS2C(TotemAnimationS2C.toId(oreBlocks.get(next))));
+                ServerPlayNetworking.send(user.getServer().getPlayerManager().getPlayer(user.getUuid()), new DebugRenderingS2C("c_radius", "", "", "", ""));
             } else {
 
                 //Survival Logic
@@ -102,7 +109,6 @@ public class DowsingRod extends Item {
 
                 Integer current = user.getStackInHand(hand).get(ModDataComponentTypes.LOOKFOR_ORE);
 
-                System.out.println(current - 1);
 
                 if(current - 1 == -1)
                     current = 15;
@@ -111,11 +117,20 @@ public class DowsingRod extends Item {
                     current = 15;
 
 
-                for (BlockPos blockPos : getSphereAroundPlayer(user, ConfigManager.INSTANCE.getDowsingRodBaseRange())) {
+                float multiply = doIHaveReachEnchantment(world, user.getStackInHand(hand)) * 0.5f + 1f;
+                float reachAsFloat = ConfigManager.INSTANCE.getDowsingRodBaseRange() * multiply;
+                int range = ((int) reachAsFloat);
+
+
+                int durationMultiplier = (doIHaveReachEnchantment(world, user.getStackInHand(hand)) + 1) * 2;
+
+                ServerPlayNetworking.send(user.getServer().getPlayerManager().getPlayer(user.getUuid()), new DebugRenderingS2C("radius", String.valueOf(user.getX()), String.valueOf(user.getY()), String.valueOf(user.getZ()), String.valueOf(range)));
+
+                for (BlockPos blockPos : getSphereAroundPlayer(user, range)) {
                     //System.out.println("Found at " + blockPos.toString() + " block: " + world.getBlockState(blockPos).getBlock().getName());
                     if (world.getBlockState(blockPos).isOf(oreBlocks.get(current - 1))) {
                         //System.out.println("Found!");
-                        ServerPlayNetworking.send(user.getServer().getPlayerManager().getPlayer(user.getUuid()), new HighlightBlockS2C(blockPos, ConfigManager.INSTANCE.getDowsingRodBaseDuration()));
+                        ServerPlayNetworking.send(user.getServer().getPlayerManager().getPlayer(user.getUuid()), new HighlightBlockS2C(blockPos, ConfigManager.INSTANCE.getDowsingRodBaseDuration() * durationMultiplier));
                     }
                 }
 
@@ -182,6 +197,10 @@ public class DowsingRod extends Item {
     public boolean canBeEnchantedWith(ItemStack stack, RegistryEntry<Enchantment> enchantment, EnchantingContext context) {
         //return enchantment.matchesId(Enchantments.UNBREAKING.getValue()) || enchantment.matchesId(Enchantments.MENDING.getValue());
         return super.canBeEnchantedWith(stack, enchantment, context);
+    }
+
+    public static int doIHaveReachEnchantment(World world, ItemStack stack) {
+        return EnchantmentHelper.getLevel(world.getRegistryManager().getOrThrow(RegistryKeys.ENCHANTMENT).getOrThrow(ModEnchantments.REACH), stack);
     }
 
     //UTIL

@@ -8,7 +8,7 @@ import software.bernie.geckolib.renderer.GeoBlockRenderer;
 
 public class HiddenHunterBlockEntityRenderer extends GeoBlockRenderer<HiddenHunterBlockEntity> {
     public HiddenHunterBlockEntityRenderer(BlockEntityRendererFactory.Context context) {
-        super(new DefaultedBlockGeoModel<>(Levoria.getId("hidden_hunter")));
+        super(new DefaultedBlockGeoModel<>(Levoria.id("hidden_hunter")));
     }
 
 

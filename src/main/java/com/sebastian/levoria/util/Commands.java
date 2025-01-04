@@ -73,6 +73,7 @@ public class Commands {
                                                 context.getSource().sendMessage(Text.literal("Example: 'shakeScreenTreeGrow=false,dowsingRodBaseRange=15'").formatted(Formatting.GREEN));
                                                 context.getSource().sendMessage(Text.literal("Available Keys:").formatted(Formatting.GRAY));
                                                     context.getSource().sendMessage(Text.literal("  - shakeScreenTreeGrow       (bool)").setStyle(Style.EMPTY.withClickEvent(new ClickEvent(ClickEvent.Action.COPY_TO_CLIPBOARD, "shakeScreenTreeGrow"))).formatted(Formatting.GRAY));
+                                                    context.getSource().sendMessage(Text.literal("  - debugMode                 (bool)").setStyle(Style.EMPTY.withClickEvent(new ClickEvent(ClickEvent.Action.COPY_TO_CLIPBOARD, "debugMode"))).formatted(Formatting.GRAY));
                                                     context.getSource().sendMessage(Text.literal("  - dowsingRodBaseRange       (int)").setStyle(Style.EMPTY.withClickEvent(new ClickEvent(ClickEvent.Action.COPY_TO_CLIPBOARD, "dowsingRodBaseRange"))).formatted(Formatting.GRAY));
                                                     context.getSource().sendMessage(Text.literal("  - dowsingRodBaseDuration    (int)").setStyle(Style.EMPTY.withClickEvent(new ClickEvent(ClickEvent.Action.COPY_TO_CLIPBOARD, "dowsingRodBaseDuration"))).formatted(Formatting.GRAY));
                                             } else {

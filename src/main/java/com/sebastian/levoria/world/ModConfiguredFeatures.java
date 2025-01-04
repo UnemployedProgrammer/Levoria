@@ -32,7 +32,7 @@ public class ModConfiguredFeatures {
     }
 
     public static RegistryKey<ConfiguredFeature<?, ?>> registerKey(String name) {
-        return RegistryKey.of(RegistryKeys.CONFIGURED_FEATURE, Levoria.getId(name));
+        return RegistryKey.of(RegistryKeys.CONFIGURED_FEATURE, Levoria.id(name));
     }
 
     private static <FC extends FeatureConfig, F extends Feature<FC>> void register(Registerable<ConfiguredFeature<?, ?>> context,

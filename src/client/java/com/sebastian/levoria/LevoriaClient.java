@@ -3,33 +3,25 @@ package com.sebastian.levoria;
 import com.sebastian.levoria.block.ModBlocks;
 import com.sebastian.levoria.block.entity.ModBlockEntities;
 import com.sebastian.levoria.block_entity_renderer.HiddenHunterBlockEntityRenderer;
+import com.sebastian.levoria.debug_renderers.DebugRendererRouter;
 import com.sebastian.levoria.effects.MoonDimensionEffects;
 import com.sebastian.levoria.effects.ScreenShakeEffect;
+import com.sebastian.levoria.network.DebugRenderingS2C;
 import com.sebastian.levoria.network.HighlightBlockS2C;
 import com.sebastian.levoria.network.ShakeScreenS2C;
 import com.sebastian.levoria.network.TotemAnimationS2C;
-import com.sebastian.levoria.util.ShakeScreenEffectHandler;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
-import net.fabricmc.fabric.api.client.rendering.v1.DimensionRenderingRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderContext;
 import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderEvents;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.particle.TotemParticle;
 import net.minecraft.client.render.*;
-import net.minecraft.client.render.debug.DebugRenderer;
-import net.minecraft.client.render.entity.LivingEntityRenderer;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.component.type.DeathProtectionComponent;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.crash.CrashException;
 import net.minecraft.util.crash.CrashReport;
@@ -103,7 +95,9 @@ public class LevoriaClient implements ClientModInitializer {
 		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SHADOW_WOOD_SAPLING, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SHADOW_DOOR, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SHADOW_TRAPDOOR, RenderLayer.getCutout());
-		applyDimensionEffect(new MoonDimensionEffects(), Levoria.getId("moon"));
+		applyDimensionEffect(new MoonDimensionEffects(), Levoria.id("moon"));
+
+		DebugRendererRouter.register();
 
 		ClientPlayNetworking.registerGlobalReceiver(TotemAnimationS2C.ID, (payload, context) -> {
 			context.client().execute(() -> {
@@ -131,6 +125,7 @@ public class LevoriaClient implements ClientModInitializer {
 			for (BlockHighlightInstance highlightedBlock : highlightedBlocks) {
 				renderBlock(ctx, highlightedBlock.getState(), highlightedBlock.getPos());
 			}
+			DebugRendererRouter.render(ctx);
 			IN_RENDERING = false;
 		});
 
@@ -148,7 +143,7 @@ public class LevoriaClient implements ClientModInitializer {
 		});
 	}
 
-	private static void renderBlock(WorldRenderContext context, BlockState state, BlockPos posM) {
+	public static void renderBlock(WorldRenderContext context, BlockState state, BlockPos posM) {
 		MinecraftClient client = MinecraftClient.getInstance();
 		VertexConsumerProvider providers = context.consumers();
 

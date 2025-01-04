@@ -1,5 +1,6 @@
 package com.sebastian.levoria;
 
+import com.sebastian.levoria.enchantment.ModEnchantments;
 import com.sebastian.levoria.world.ModConfiguredFeatures;
 import com.sebastian.levoria.world.ModPlacedFeatures;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
@@ -32,5 +33,6 @@ public class LevoriaDataGenerator implements DataGeneratorEntrypoint {
 
 		registryBuilder.addRegistry(RegistryKeys.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrap);
 		registryBuilder.addRegistry(RegistryKeys.PLACED_FEATURE, ModPlacedFeatures::bootstrap);
+		registryBuilder.addRegistry(RegistryKeys.ENCHANTMENT, ModEnchantments::bootstrap);
 	}
 }

@@ -1,7 +1,6 @@
 package com.sebastian.levoria.block.entity;
 
 import com.sebastian.levoria.Levoria;
-import com.sebastian.levoria.block.HiddenHunterBlock;
 import com.sebastian.levoria.block.ModBlocks;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.entity.BlockEntity;
@@ -16,7 +15,7 @@ public class ModBlockEntities {
 
     //METHODS
     public static <T extends BlockEntity> BlockEntityType<T> register(String name, BlockEntityType<T> type) {
-        return Registry.register(Registries.BLOCK_ENTITY_TYPE, Levoria.getId(name), type);
+        return Registry.register(Registries.BLOCK_ENTITY_TYPE, Levoria.id(name), type);
     }
 
     public static void registerModBlockEntities() {

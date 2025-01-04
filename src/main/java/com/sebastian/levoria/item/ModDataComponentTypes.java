@@ -2,12 +2,9 @@ package com.sebastian.levoria.item;
 
 import com.mojang.serialization.Codec;
 import com.sebastian.levoria.Levoria;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
 import net.minecraft.component.ComponentType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import net.minecraft.util.math.BlockPos;
 
 import java.util.function.UnaryOperator;
 
@@ -20,7 +17,7 @@ public class ModDataComponentTypes {
 
 
     private static <T>ComponentType<T> register(String name, UnaryOperator<ComponentType.Builder<T>> builderOperator) {
-        return Registry.register(Registries.DATA_COMPONENT_TYPE, Levoria.getId(name),
+        return Registry.register(Registries.DATA_COMPONENT_TYPE, Levoria.id(name),
                 builderOperator.apply(ComponentType.builder()).build());
     }
 

@@ -13,7 +13,7 @@ import net.minecraft.registry.RegistryKeys;
 public class AdvancedRegisterBlock {
     //METHODS
     public static <T extends Block> T register(String name, T block) {
-        return Registry.register(Registries.BLOCK, Levoria.getId(name), block);
+        return Registry.register(Registries.BLOCK, Levoria.id(name), block);
     }
 
     public static <T extends Block> T registerWithItem(String name, T block, Item.Settings settings) {
@@ -23,6 +23,6 @@ public class AdvancedRegisterBlock {
     }
 
     public static <T extends Block> T registerWithItem(String name, T block) {
-        return registerWithItem(name, block, new Item.Settings().registryKey(RegistryKey.of(RegistryKeys.ITEM, Levoria.getId(name))));
+        return registerWithItem(name, block, new Item.Settings().registryKey(RegistryKey.of(RegistryKeys.ITEM, Levoria.id(name))));
     }
 }
