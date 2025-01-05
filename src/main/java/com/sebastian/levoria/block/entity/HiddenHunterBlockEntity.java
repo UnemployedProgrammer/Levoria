@@ -125,11 +125,11 @@ public class HiddenHunterBlockEntity extends BlockEntity implements GeoBlockEnti
         if(hiddenHunterBlockEntity.currentlyAttackingAPlayer) {
             //TICK == EVENT (For this ex. tick 1 in anim play sound "shulker open"
             if(hiddenHunterBlockEntity.attacking_time_line == 1) {
-                world.playSound(null, blockPos, SoundEvents.BLOCK_SHULKER_BOX_OPEN, SoundCategory.HOSTILE,1f, 1f);
+                world.playSound(null, blockPos, SoundEvents.BLOCK_SHULKER_BOX_OPEN, SoundCategory.HOSTILE, isEvil(hiddenHunterBlockEntity) ? 0.1F : 1f, 1f);
             }
 
             if(hiddenHunterBlockEntity.attacking_time_line == 47) {
-                world.playSound(null, blockPos, SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.HOSTILE,1f, 1f);
+                world.playSound(null, blockPos, SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.HOSTILE, isEvil(hiddenHunterBlockEntity) ? 0.1F : 1f, 1f);
                 Direction direction = (Direction)world.getBlockState(blockPos).get(HiddenHunterBlock.FACING);
                 int yaw = switch (direction) {
                     case NORTH -> 180;
@@ -176,7 +176,7 @@ public class HiddenHunterBlockEntity extends BlockEntity implements GeoBlockEnti
             }
 
             if(hiddenHunterBlockEntity.attacking_time_line == 50) {
-                world.playSound(null, blockPos, SoundEvents.BLOCK_SHULKER_BOX_CLOSE, SoundCategory.HOSTILE,1f, 1f);
+                world.playSound(null, blockPos, SoundEvents.BLOCK_SHULKER_BOX_CLOSE, SoundCategory.HOSTILE, isEvil(hiddenHunterBlockEntity) ? 0.1F : 1f, 1f);
                 hiddenHunterBlockEntity.currentlyAttackingAPlayer = false;
                 hiddenHunterBlockEntity.attacking_time_line = 0;
                 hiddenHunterBlockEntity.markDirty();
@@ -184,15 +184,28 @@ public class HiddenHunterBlockEntity extends BlockEntity implements GeoBlockEnti
             hiddenHunterBlockEntity.attacking_time_line++;
         }
 
-        if(hiddenHunterBlockEntity.world.getBlockState(hiddenHunterBlockEntity.pos).get(HiddenHunterBlock.EVIL, false)) {
+        if(isEvil(hiddenHunterBlockEntity)) {
             tryShoot(hiddenHunterBlockEntity);
         }
+    }
+
+    public static boolean isEvil(HiddenHunterBlockEntity be) {
+        return be.world.getBlockState(be.pos).get(HiddenHunterBlock.EVIL, false);
     }
 
     public static List<PlayerEntity> findPlayersInRadius(World world, BlockPos pos, double radius) {
         Box area = new Box(pos).expand(radius);
         List<PlayerEntity> playersInRange = world.getEntitiesByClass(PlayerEntity.class, area, player -> true);
         return playersInRange;
+    }
+
+    public static boolean shouldAttack(List<PlayerEntity> players) {
+        for (PlayerEntity player : players) {
+            if(!player.isSpectator() && !player.isCreative()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public static List<PlayerEntity> findPlayersInFront(World world, BlockPos pos, double pos_infront, Direction direction) {
@@ -212,7 +225,7 @@ public class HiddenHunterBlockEntity extends BlockEntity implements GeoBlockEnti
         be.detect_interval++;
         if (be.detect_interval == 100) {
             List<PlayerEntity> infront = findPlayersInFront(be.world, be.pos, 10, be.world.getBlockState(be.pos).get(HiddenHunterBlock.FACING, Direction.DOWN));
-            if(!infront.isEmpty()) {
+            if(!infront.isEmpty() && shouldAttack(infront)) {
                 be.setAttacking();
             }
             be.detect_interval = 0;
