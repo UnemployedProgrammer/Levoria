@@ -2,7 +2,7 @@
   "itemgroup.levoria": "Levoria",
   "cfg.levoria": "Configure Levoria",
   "cfg.levoria.client": "Client",
-  "cfg.levoria.server": "Server",
+  "cfg.levoria.server": "Server (Current Values not Available | Only Operators)",
 
   "enchantment.levoria.reach": "Reach",
   "tag.item.levoria.reach_enchantable": "Reach",
@@ -64,6 +64,15 @@
   "cfg.levoria.client_skipExperimentalWarningsScreen.tooltip": "This will automatically skip the experimental warnings screen on world load.",
   "cfg.levoria.client_debugRenderPackets": "Accept Debug Packets",
   "cfg.levoria.client_debugRenderPackets.tooltip": "If the client should accept debug packets/render debug visualization if the server has debug-mode enabled.",
+
+  "cfg.levoria.server_shakeScreenOnTreeGrow": "Shake Screen when Shadow Tree grows",
+  "cfg.levoria.server_shakeScreenOnTreeGrow.tooltip": "Shakes the screen when a nearby shadow tree grows.",
+  "cfg.levoria.server_debugMode": "Debug/Maintenance Mode",
+  "cfg.levoria.server_debugMode.tooltip": "If the client has debug renderers enabled, sends debug visualisation.",
+  "cfg.levoria.server_dowsingRodBaseDuration": "Dowsing Rod Visualisation Duration",
+  "cfg.levoria.server_dowsingRodBaseDuration.tooltip": "The duration of the visualization of found ores in range.",
+  "cfg.levoria.server_dowsingRodBaseRange": "Dowsing Rod Range",
+  "cfg.levoria.server_dowsingRodBaseRange.tooltip": "The base range of the dowsing rod.",
 
   "item.levoria.dowsing_rod.tooltip.error": "Error while loading current selected entry."
 }

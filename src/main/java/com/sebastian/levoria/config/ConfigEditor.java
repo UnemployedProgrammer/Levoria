@@ -1,6 +1,12 @@
 package com.sebastian.levoria.config;
 
 import com.sebastian.levoria.Levoria;
+import com.sebastian.levoria.network.HighlightBlockS2C;
+import net.minecraft.network.RegistryByteBuf;
+import net.minecraft.network.codec.PacketCodec;
+import net.minecraft.network.codec.PacketCodecs;
+import net.minecraft.network.packet.CustomPayload;
+import net.minecraft.util.math.BlockPos;
 
 public class ConfigEditor {
     private final ConfigManager.Config CONFIG;
@@ -68,6 +74,27 @@ public class ConfigEditor {
         }
 
         return this;
+    }
+
+    /**
+     Available Keys:
+     <ul>
+     <li>shakeScreenTreeGrow (bool)</li>
+     <li>debugMode (bool)</li>
+     <li>dowsingRodBaseRange (int)</li>
+     <li>dowsingRodBaseDuration (int)</li>
+     </ul>
+     * @param resolvableMessage Example: "shakeScreenTreeGrow=true,dowsingRodBaseRange=10,dowsingRodBaseDuration=160"
+     */
+    public static record ConfigurationPayload(String resolvableMessage) implements CustomPayload {
+        public static final Id<ConfigurationPayload> ID = new Id<>(Levoria.id("configure_server"));
+        public static final PacketCodec<RegistryByteBuf, ConfigurationPayload> PACKET_CODEC =
+                PacketCodec.tuple(PacketCodecs.STRING, ConfigurationPayload::resolvableMessage, ConfigurationPayload::new);
+
+        @Override
+        public Id<? extends CustomPayload> getId() {
+            return ID;
+        }
     }
 
 }

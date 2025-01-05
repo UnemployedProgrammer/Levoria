@@ -87,7 +87,7 @@ public class DowsingRod extends Item {
                 Integer next = user.getStackInHand(hand).set(ModDataComponentTypes.LOOKFOR_ORE, nextIndex(user, hand));
                 user.sendMessage(Text.literal("» ").append(oreBlocks.get(next).getName()).append(" «").formatted(Formatting.GREEN), true);
                 ServerPlayNetworking.send(user.getServer().getPlayerManager().getPlayer(user.getUuid()), new TotemAnimationS2C(TotemAnimationS2C.toId(oreBlocks.get(next))));
-                ServerPlayNetworking.send(user.getServer().getPlayerManager().getPlayer(user.getUuid()), new DebugRenderingS2C("c_radius", "", "", "", ""));
+                if(ConfigManager.INSTANCE.isDebugMode()) { ServerPlayNetworking.send(user.getServer().getPlayerManager().getPlayer(user.getUuid()), new DebugRenderingS2C("c_radius", "", "", "", "")); }
             } else {
 
                 //Survival Logic
@@ -124,7 +124,9 @@ public class DowsingRod extends Item {
 
                 int durationMultiplier = (doIHaveReachEnchantment(world, user.getStackInHand(hand)) + 1) * 2;
 
-                ServerPlayNetworking.send(user.getServer().getPlayerManager().getPlayer(user.getUuid()), new DebugRenderingS2C("radius", String.valueOf(user.getX()), String.valueOf(user.getY()), String.valueOf(user.getZ()), String.valueOf(range)));
+                if(ConfigManager.INSTANCE.isDebugMode()) {
+                    ServerPlayNetworking.send(user.getServer().getPlayerManager().getPlayer(user.getUuid()), new DebugRenderingS2C("radius", String.valueOf(user.getX()), String.valueOf(user.getY()), String.valueOf(user.getZ()), String.valueOf(range)));
+                }
 
                 for (BlockPos blockPos : getSphereAroundPlayer(user, range)) {
                     //System.out.println("Found at " + blockPos.toString() + " block: " + world.getBlockState(blockPos).getBlock().getName());

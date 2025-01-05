@@ -2,6 +2,7 @@ package com.sebastian.levoria;
 
 import com.sebastian.levoria.block.ModBlocks;
 import com.sebastian.levoria.block.entity.ModBlockEntities;
+import com.sebastian.levoria.config.ConfigEditor;
 import com.sebastian.levoria.config.ConfigManager;
 import com.sebastian.levoria.enchantment.ModEnchantmentEffects;
 import com.sebastian.levoria.item.ModDataComponentTypes;
@@ -59,6 +60,8 @@ public class Levoria implements ModInitializer {
 		PayloadTypeRegistry.playS2C().register(HighlightBlockS2C.ID, HighlightBlockS2C.PACKET_CODEC);
 		PayloadTypeRegistry.playS2C().register(ShakeScreenS2C.ID, ShakeScreenS2C.PACKET_CODEC);
 		PayloadTypeRegistry.playS2C().register(DebugRenderingS2C.ID, DebugRenderingS2C.PACKET_CODEC);
+
+		//PayloadTypeRegistry.playC2S().register(ConfigEditor.ConfigurationPayload.ID, ConfigEditor.ConfigurationPayload.PACKET_CODEC);
 
 		//SELF-EXPLANATORY
 

@@ -20,6 +20,7 @@ import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.ClickEvent;
+import net.minecraft.text.HoverEvent;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
@@ -69,14 +70,20 @@ public class Commands {
 
                                             if(changes.isBlank()) {
                                                 context.getSource().sendMessage(Text.literal("-- Help --").formatted(Formatting.GREEN));
-                                                context.getSource().sendMessage(Text.literal("This is a dynamic config changer, you can even set multiple configs at once.").formatted(Formatting.GREEN));
-                                                context.getSource().sendMessage(Text.literal("Example: 'shakeScreenTreeGrow=false,dowsingRodBaseRange=15'").formatted(Formatting.GREEN));
+                                                context.getSource().sendMessage(Text.literal("This is a dynamic config changer, you can even set multiple configs at once.").setStyle(Style.EMPTY.withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/levoria configure \"\""))).formatted(Formatting.GREEN));
+                                                context.getSource().sendMessage(Text.literal("Example: 'shakeScreenTreeGrow=false,dowsingRodBaseRange=15'").setStyle(Style.EMPTY.withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/levoria configure \"\""))).formatted(Formatting.GREEN));
                                                 context.getSource().sendMessage(Text.literal("Available Keys:").formatted(Formatting.GRAY));
                                                     context.getSource().sendMessage(Text.literal("  - shakeScreenTreeGrow       (bool)").setStyle(Style.EMPTY.withClickEvent(new ClickEvent(ClickEvent.Action.COPY_TO_CLIPBOARD, "shakeScreenTreeGrow"))).formatted(Formatting.GRAY));
                                                     context.getSource().sendMessage(Text.literal("  - debugMode                 (bool)").setStyle(Style.EMPTY.withClickEvent(new ClickEvent(ClickEvent.Action.COPY_TO_CLIPBOARD, "debugMode"))).formatted(Formatting.GRAY));
                                                     context.getSource().sendMessage(Text.literal("  - dowsingRodBaseRange       (int)").setStyle(Style.EMPTY.withClickEvent(new ClickEvent(ClickEvent.Action.COPY_TO_CLIPBOARD, "dowsingRodBaseRange"))).formatted(Formatting.GRAY));
                                                     context.getSource().sendMessage(Text.literal("  - dowsingRodBaseDuration    (int)").setStyle(Style.EMPTY.withClickEvent(new ClickEvent(ClickEvent.Action.COPY_TO_CLIPBOARD, "dowsingRodBaseDuration"))).formatted(Formatting.GRAY));
                                             } else {
+
+                                                if(changes.contains("|NO-CALLBACK")) {
+                                                    ConfigEditor.edit().change(changes.replace("|NO-CALLBACK", "")).save();
+                                                    return 1;
+                                                }
+
                                                 ConfigEditor.edit().change(changes).save();
                                                 context.getSource().sendMessage(Text.literal("Saved!").formatted(Formatting.GRAY));
                                                 context.getSource().sendMessage(Text.literal("New " + ConfigManager.INSTANCE.toString()).formatted(Formatting.GRAY));
@@ -84,6 +91,13 @@ public class Commands {
 
                                             return 1;
                                         })))
+
+                                .then(CommandManager.literal("fetch_cfg")
+
+                                        .executes(context -> {
+                                            context.getSource().sendMessage(Text.literal(ConfigManager.INSTANCE.toString()).setStyle(Style.EMPTY.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal("Click to modify..."))).withClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/levoria configure \"\"")).withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/levoria configure \"\""))).formatted(Formatting.GRAY));
+                                            return 1;
+                                        }))
 
                         /*
                         .then(CommandManager.literal("add")
