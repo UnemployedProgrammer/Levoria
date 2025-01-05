@@ -7,6 +7,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
@@ -16,6 +17,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -25,6 +27,8 @@ import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animation.*;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class HiddenHunterBlockEntity extends BlockEntity implements GeoBlockEntity {
@@ -36,6 +40,7 @@ public class HiddenHunterBlockEntity extends BlockEntity implements GeoBlockEnti
 
     private boolean attacking = false;
     private int attacking_time_line = 0;
+    private int detect_interval = 0;
     private boolean currentlyAttackingAPlayer = false;
 
     public HiddenHunterBlockEntity(BlockPos pos, BlockState state) {
@@ -66,6 +71,7 @@ public class HiddenHunterBlockEntity extends BlockEntity implements GeoBlockEnti
         nbt.putBoolean("animation_attacking", attacking);
         nbt.putBoolean("currently_attacking", currentlyAttackingAPlayer);
         nbt.putInt("attacking_ticks", attacking_time_line);
+        nbt.putInt("detect_interval", detect_interval);
         super.writeNbt(nbt, registries);
     }
 
@@ -79,6 +85,9 @@ public class HiddenHunterBlockEntity extends BlockEntity implements GeoBlockEnti
         }
         if(nbt.contains("attacking_ticks")) {
             attacking_time_line = nbt.getInt("attacking_ticks");
+        }
+        if(nbt.contains("detect_interval")) {
+            detect_interval = nbt.getInt("detect_interval");
         }
         super.readNbt(nbt, registries);
     }
@@ -173,6 +182,40 @@ public class HiddenHunterBlockEntity extends BlockEntity implements GeoBlockEnti
                 hiddenHunterBlockEntity.markDirty();
             }
             hiddenHunterBlockEntity.attacking_time_line++;
+        }
+
+        if(hiddenHunterBlockEntity.world.getBlockState(hiddenHunterBlockEntity.pos).get(HiddenHunterBlock.EVIL, false)) {
+            tryShoot(hiddenHunterBlockEntity);
+        }
+    }
+
+    public static List<PlayerEntity> findPlayersInRadius(World world, BlockPos pos, double radius) {
+        Box area = new Box(pos).expand(radius);
+        List<PlayerEntity> playersInRange = world.getEntitiesByClass(PlayerEntity.class, area, player -> true);
+        return playersInRange;
+    }
+
+    public static List<PlayerEntity> findPlayersInFront(World world, BlockPos pos, double pos_infront, Direction direction) {
+        List<PlayerEntity> allPlrs = new ArrayList<>();
+
+        for (int i = 1; i < pos_infront; i++) {
+            Box area = new Box(pos.offset(direction, i));
+            for (PlayerEntity entitiesByClass : world.getEntitiesByClass(PlayerEntity.class, area, player -> true)) {
+                allPlrs.add(entitiesByClass);
+            }
+        }
+
+        return allPlrs;
+    }
+
+    public static void tryShoot(HiddenHunterBlockEntity be) {
+        be.detect_interval++;
+        if (be.detect_interval == 100) {
+            List<PlayerEntity> infront = findPlayersInFront(be.world, be.pos, 10, be.world.getBlockState(be.pos).get(HiddenHunterBlock.FACING, Direction.DOWN));
+            if(!infront.isEmpty()) {
+                be.setAttacking();
+            }
+            be.detect_interval = 0;
         }
     }
 

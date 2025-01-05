@@ -16,6 +16,7 @@ public abstract class EntityMixin {
 
 		boolean bl = entity.getVelocity().y <= 0.0;
 		if(bl && entity.getWorld().getDimension().effects().toString().equals("levoria:moon")) {
+			entity.fallDistance = 0.0F;
 			cir.setReturnValue(Math.min(entity.getFinalGravity(), 0.01));
 		}
 	}

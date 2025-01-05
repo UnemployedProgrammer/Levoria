@@ -9,7 +9,9 @@ import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
+import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Property;
 import net.minecraft.util.ActionResult;
@@ -18,6 +20,7 @@ import net.minecraft.util.BlockRotation;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
@@ -26,12 +29,12 @@ import org.jetbrains.annotations.Nullable;
 
 public class HiddenHunterBlock extends BlockWithEntity {
 
-    //public static final BooleanProperty ATTACKING;
+    public static final BooleanProperty EVIL;
     public static final EnumProperty<Direction> FACING;
 
     public HiddenHunterBlock(Settings settings) {
         super(settings);
-        this.setDefaultState((BlockState)this.getDefaultState().with(FACING, Direction.NORTH));
+        this.setDefaultState((BlockState)this.getDefaultState().with(FACING, Direction.NORTH).with(EVIL, false));
     }
 
     @Override
@@ -43,6 +46,7 @@ public class HiddenHunterBlock extends BlockWithEntity {
         return (BlockState) this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
     }
 
+    /*
     @Override
     protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         if(world.isClient) return ActionResult.FAIL;
@@ -52,6 +56,7 @@ public class HiddenHunterBlock extends BlockWithEntity {
         }
         return ActionResult.SUCCESS;
     }
+     */
 
     @Override
     protected void neighborUpdate(BlockState state, World world, BlockPos pos, Block sourceBlock, @Nullable WireOrientation wireOrientation, boolean notify) {
@@ -97,10 +102,11 @@ public class HiddenHunterBlock extends BlockWithEntity {
     }
 
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(new Property[]{FACING});
+        builder.add(new Property[]{FACING, EVIL});
     }
 
     static {
         FACING = FacingBlock.FACING;
+        EVIL = BooleanProperty.of("evil");
     }
 }
