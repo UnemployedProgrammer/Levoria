@@ -1,0 +1,9 @@
+accessWidener v1 named
+
+# Zugriff auf private Methode addDrawableChild
+# Beispiel für das Freigeben von Methoden
+accessible method net.minecraft.client.gui.screen.Screen addDrawableChild;
+
+# Beispiel für das Freigeben eines Feldes
+net.minecraft.client.gui.screen.Screen width
+net.minecraft.client.gui.screen.Screen height

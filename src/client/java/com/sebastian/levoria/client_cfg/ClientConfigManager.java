@@ -14,19 +14,20 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ClientConfigManager {
-    public static File CONFIG_FILE = new File("config/levoria.json");
+    public static File CONFIG_FILE = new File("config/levoria_client.json");
 
     public static Map<String, Object> toMap(ClientConfig cfg) {
         Map<String, Object> map = new HashMap<>();
         map.put("isHideExperimentalWarning", cfg.isHideExperimentalWarning());
-        map.put("getHideExperimentalWarningDelay", cfg.getHideExperimentalWarningDelay());
+        map.put("acceptDebugRendererPackets", cfg.isAcceptDebugRendererPackets());
+        //map.put("getHideExperimentalWarningDelay", cfg.getHideExperimentalWarningDelay());
 
         return map;
     }
 
     public static ClientConfig fromMap(Map<String, Object> cfg) {
         try {
-            return new ClientConfig((Boolean) cfg.get("isHideExperimentalWarning"), (Double) cfg.get("getHideExperimentalWarningDelay"));
+            return new ClientConfig((Boolean) cfg.get("isHideExperimentalWarning"), 0, (Boolean) cfg.get("acceptDebugRendererPackets")); // (Double) cfg.get("getHideExperimentalWarningDelay")
         } catch (Exception e) {
             Levoria.LOGGER.error("Error while trying to map (read-in) config...");
             Levoria.LOGGER.error(e.getLocalizedMessage());
@@ -55,11 +56,5 @@ public class ClientConfigManager {
             Levoria.LOGGER.error(e.getLocalizedMessage());
         }
         return ClientConfig.defaultSettings();
-    }
-
-    public static void registerConfigUn_Loaders() {
-        ServerWorldEvents.UNLOAD.register(Event.DEFAULT_PHASE, (world, serverWorld) -> {
-            write(ClientConfig.INSTANCE);
-        });
     }
 }

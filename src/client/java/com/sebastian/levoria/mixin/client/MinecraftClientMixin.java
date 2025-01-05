@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(MinecraftClient.class)
 public class MinecraftClientMixin {
-    @Inject(method = "stop", at = @At("TAIL"))
+    @Inject(method = "close", at = @At("TAIL"))
     public void onShutdown(CallbackInfo ci) {
         ClientConfigManager.write(ClientConfig.INSTANCE);
     }

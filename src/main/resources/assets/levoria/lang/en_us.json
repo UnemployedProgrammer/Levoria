@@ -1,6 +1,8 @@
 {
   "itemgroup.levoria": "Levoria",
   "cfg.levoria": "Configure Levoria",
+  "cfg.levoria.client": "Client",
+  "cfg.levoria.server": "Server",
 
   "enchantment.levoria.reach": "Reach",
   "tag.item.levoria.reach_enchantable": "Reach",
@@ -53,6 +55,15 @@
   "block.levoria.shadowwood_sapling": "Shadow Sapling",
   "item.levoria.shadowwood_sapling": "Shadow Sapling",
 
+  "gui.levoria.skip_warnings":  "Skip Experimental Warnings \n This will skip experimental warnings after the progressbar is filled. \n \n [ENTER] Skip Now",
+
+  "narration.levoria.skip_warnings_title": "Skipping Experimental warnings in a few seconds.",
+  "narration.levoria.skip_warnings_hint": "Press enter to skip immediately.",
+
+  "cfg.levoria.client_skipExperimentalWarningsScreen": "Skip Experimental Warnings Screen",
+  "cfg.levoria.client_skipExperimentalWarningsScreen.tooltip": "This will automatically skip the experimental warnings screen on world load.",
+  "cfg.levoria.client_debugRenderPackets": "Accept Debug Packets",
+  "cfg.levoria.client_debugRenderPackets.tooltip": "If the client should accept debug packets/render debug visualization if the server has debug-mode enabled.",
 
   "item.levoria.dowsing_rod.tooltip.error": "Error while loading current selected entry."
 }

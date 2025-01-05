@@ -12,6 +12,7 @@ import com.sebastian.levoria.network.DebugRenderingS2C;
 import com.sebastian.levoria.network.HighlightBlockS2C;
 import com.sebastian.levoria.network.ShakeScreenS2C;
 import com.sebastian.levoria.network.TotemAnimationS2C;
+import com.sebastian.levoria.util.hide_experimental_warning.HideExperimentalScreenEvent;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
@@ -95,6 +96,8 @@ public class LevoriaClient implements ClientModInitializer {
 
 		ClientConfigManager.CONFIG_FILE = new File(MinecraftClient.getInstance().runDirectory, "config/levoria_client.json");
 		ClientConfig.INSTANCE = ClientConfigManager.read();
+
+		HideExperimentalScreenEvent.register();
 
 		ScreenShakeEffect.INSTANCE = new ScreenShakeEffect();
 		BlockEntityRendererRegistry.register(ModBlockEntities.HIDDEN_HUNTER, HiddenHunterBlockEntityRenderer::new);

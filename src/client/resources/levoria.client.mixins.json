@@ -5,6 +5,7 @@
   "client": [
     "BlockStateLuminanceClientMixin",
     "CameraMixin",
+    "ExperimentalWarningsScreenMixin",
     "MinecraftClientMixin",
     "RenderSkyInCustomDimensionsMixin"
   ],
