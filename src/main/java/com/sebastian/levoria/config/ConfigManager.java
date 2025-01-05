@@ -80,7 +80,7 @@ public class ConfigManager {
 
     }
 
-    public static File CONFIG_FILE = new File("config/levoria_server.json");
+    public static File CONFIG_FILE = new File("config/levoria.json");
 
     public static Map<String, Object> toMap(Config cfg) {
         Map<String, Object> map = new HashMap<>();
@@ -127,7 +127,7 @@ public class ConfigManager {
 
     public static void registerConfigUn_Loaders() {
         ServerWorldEvents.LOAD.register(Event.DEFAULT_PHASE, (world, serverWorld) -> {
-            CONFIG_FILE = new File(world.getRunDirectory().toFile(), "config/levoria_server.json");
+            CONFIG_FILE = new File(world.getRunDirectory().toFile(), "config/levoria.json");
             INSTANCE = read();
         });
         ServerWorldEvents.UNLOAD.register(Event.DEFAULT_PHASE, (world, serverWorld) -> {

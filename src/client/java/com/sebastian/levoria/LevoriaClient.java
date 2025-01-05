@@ -3,6 +3,8 @@ package com.sebastian.levoria;
 import com.sebastian.levoria.block.ModBlocks;
 import com.sebastian.levoria.block.entity.ModBlockEntities;
 import com.sebastian.levoria.block_entity_renderer.HiddenHunterBlockEntityRenderer;
+import com.sebastian.levoria.client_cfg.ClientConfig;
+import com.sebastian.levoria.client_cfg.ClientConfigManager;
 import com.sebastian.levoria.debug_renderers.DebugRendererRouter;
 import com.sebastian.levoria.effects.MoonDimensionEffects;
 import com.sebastian.levoria.effects.ScreenShakeEffect;
@@ -31,6 +33,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.BlockRenderView;
 
+import java.io.File;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -89,6 +92,10 @@ public class LevoriaClient implements ClientModInitializer {
 
 	@Override
 	public void onInitializeClient() {
+
+		ClientConfigManager.CONFIG_FILE = new File(MinecraftClient.getInstance().runDirectory, "config/levoria_client.json");
+		ClientConfig.INSTANCE = ClientConfigManager.read();
+
 		ScreenShakeEffect.INSTANCE = new ScreenShakeEffect();
 		BlockEntityRendererRegistry.register(ModBlockEntities.HIDDEN_HUNTER, HiddenHunterBlockEntityRenderer::new);
 		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.MOON_BERRY_BUSH, RenderLayer.getCutout());
