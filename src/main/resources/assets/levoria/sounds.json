@@ -2,7 +2,7 @@
   "moon_atmos": {
     "sounds": [
       {
-        "name": "levoria:moon_atmos",
+        "name": "levoria:moon_atmos_quiet",
         "stream": true
       }
     ]

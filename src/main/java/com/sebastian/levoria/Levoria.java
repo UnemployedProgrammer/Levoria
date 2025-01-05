@@ -13,6 +13,7 @@ import com.sebastian.levoria.network.HighlightBlockS2C;
 import com.sebastian.levoria.network.ShakeScreenS2C;
 import com.sebastian.levoria.network.TotemAnimationS2C;
 import com.sebastian.levoria.util.Commands;
+import com.sebastian.levoria.util.ModSounds;
 import com.sebastian.levoria.world.tree.ShadowTreeEffects;
 import com.sebastian.levoria.world.tree.ShadowTreeTrunkPlacer;
 import com.sebastian.levoria.world.gen.ModWorldGen;
@@ -52,6 +53,7 @@ public class Levoria implements ModInitializer {
 		ModBlockEntities.registerModBlockEntities();
 		ModEnchantmentEffects.registerEnchantmentEffects();
 		ModItemGroups.registerModItemGrops();
+		ModSounds.registerSounds();
 		ModWorldGen.generateModWorldGen();
 
 
