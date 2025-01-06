@@ -59,7 +59,7 @@ public class ModBlocks {
             new SlabBlock(getMoonBlockNonBlockSettings("moon_stone_slab")));
 
     public static final Block MOON_STONE_BUTTON = registerBlock("moon_stone_button",
-            new ButtonBlock(BlockSetType.IRON, 2, getMoonBlockNonBlockSettings("moon_stone_button").noCollision()));
+            new ButtonBlock(BlockSetType.IRON, 12, getMoonBlockNonBlockSettings("moon_stone_button").noCollision()));
 
     public static final Block MOON_STONE_PRESSURE_PLATE = registerBlock("moon_stone_pressure_plate",
             new PressurePlateBlock(BlockSetType.IRON, getMoonBlockNonBlockSettings("moon_stone_pressure_plate")));
@@ -75,7 +75,7 @@ public class ModBlocks {
             new SlabBlock(getMoonBlockNonBlockSettings("moon_bricks_slab")));
 
     public static final Block MOON_BRICKS_BUTTON = registerBlock("moon_bricks_button",
-            new ButtonBlock(BlockSetType.IRON, 2, getMoonBlockNonBlockSettings("moon_bricks_button").noCollision()));
+            new ButtonBlock(BlockSetType.IRON, 20, getMoonBlockNonBlockSettings("moon_bricks_button").noCollision()));
 
     public static final Block MOON_BRICKS_PRESSURE_PLATE = registerBlock("moon_bricks_pressure_plate",
             new PressurePlateBlock(BlockSetType.IRON, getMoonBlockNonBlockSettings("moon_bricks_pressure_plate")));

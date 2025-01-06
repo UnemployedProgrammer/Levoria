@@ -43,6 +43,10 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.MOON_BRICKS_WALL)
         ;
 
+        getOrCreateTagBuilder(BlockTags.BUTTONS)
+                .add(ModBlocks.MOON_STONE_BUTTON)
+                .add(ModBlocks.MOON_BRICKS_BUTTON);
+
         getOrCreateTagBuilder(BlockTags.OVERWORLD_CARVER_REPLACEABLES)
                 .add(ModBlocks.MOON_STONE)
                 .add(Blocks.GRASS_BLOCK)

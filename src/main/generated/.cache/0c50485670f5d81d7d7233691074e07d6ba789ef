@@ -1,6 +1,7 @@
-// 1.21.3	2025-01-04T17:22:13.232582098	Levoria/Tags for minecraft:block
+// 1.21.3	2025-01-06T15:46:07.579345348	Levoria/Tags for minecraft:block
 4cd3ad26ddf2983996d8c0275dcfc204c4b96a36 data/minecraft/tags/block/overworld_carver_replaceables.json
 35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/minecraft/tags/block/needs_iron_tool.json
+b4b8efc64058ac5bc8892beaa97f42c0d0197349 data/minecraft/tags/block/buttons.json
 41502817fee0be3aa850a57b731385758ff2b066 data/minecraft/tags/block/fences.json
 d9680ff681aa42677a12e45e32e091b9ba5764db data/minecraft/tags/block/mineable/pickaxe.json
 9617711bb1c70548e9bce0027b01601d902f47a3 data/minecraft/tags/block/fence_gates.json

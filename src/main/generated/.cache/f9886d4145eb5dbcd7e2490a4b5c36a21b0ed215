@@ -1,4 +1,4 @@
-// 1.21.3	2025-01-04T17:22:13.23071627	Levoria/Model Definitions
+// 1.21.3	2025-01-06T15:46:07.577372078	Levoria/Model Definitions
 8db121cc9137c1ecfc80a22b29c26b6dd9d1d8d2 assets/levoria/blockstates/shadowwood_sapling.json
 00bf2031bb4c8e8213d54a09a3a1d5919d7fcc0e assets/levoria/models/block/moon_bricks_wall_side.json
 0f555d4505d86b5a5d9ffb49771a554ceed31ecb assets/levoria/models/block/shadow_door_top_left.json
@@ -8,8 +8,8 @@ c064168247510eb2bbf43717aafdb6b244c2e518 assets/levoria/models/block/moon_stone_
 cdaa241319a76e3f2d0840773a4170c8382f2ebe assets/levoria/models/block/moon_stone_wall_side.json
 6d019c283ae016264f4faec1a3f74615c9c1e476 assets/levoria/models/item/shadowwood_leaves.json
 49982ea663188ed2e3ee3eb43fc486fede4721ba assets/levoria/models/block/moon_bricks_stairs.json
-8062d59fb354647c440a694fee94b8e27ff4e0ae assets/levoria/blockstates/shadowwood_log.json
 ae826b850cc1a043c543069ed8d47203ca03897b assets/levoria/blockstates/shadowwood_wood.json
+8062d59fb354647c440a694fee94b8e27ff4e0ae assets/levoria/blockstates/shadowwood_log.json
 949b1788071261468f36beff5fa23601b07fb994 assets/levoria/models/block/shadow_slab.json
 2b103854637eb8d75d8d2a17cd1bd5f8fd19000b assets/levoria/models/block/moon_stone_slab_top.json
 05cbbb78c5b3423d8727bf41bc199edda75d6f67 assets/levoria/models/item/moon_stone.json
@@ -74,8 +74,8 @@ e02ed3591ef1bda53c37baaaf83281d812a0b06d assets/levoria/blockstates/moon_bricks_
 182fd18c4e506755fc8286669fc23fcc7472ec2d assets/levoria/models/block/shadowwood_planks.json
 daf866c834f2116b5bedab67e76927c05989871e assets/levoria/models/block/moon_bricks_wall_inventory.json
 c93f6168f424c9afcf6308bde7d6cc27f5d24059 assets/levoria/models/item/moon_bricks.json
-566621786145f9806dbe055711adcc5dc80c8720 assets/levoria/blockstates/moon_bricks.json
 9174b3909c653d2bd0f663507c12b8f8c9019cd5 assets/levoria/models/item/shadow_button.json
+566621786145f9806dbe055711adcc5dc80c8720 assets/levoria/blockstates/moon_bricks.json
 5163c262fc5b197a422341ddf419bce8815e2a26 assets/levoria/models/item/shadow_trapdoor.json
 9147baed6f9d06c4dcda56b302f433c8e8682ab7 assets/levoria/models/block/moon_berry_bush_stage0.json
 51f7e163a411215a691ecd0d43e2e7632042b605 assets/levoria/models/block/moon_stone_pressure_plate_down.json

@@ -24,6 +24,9 @@
 		"fabric-datagen": [
 			"com.sebastian.levoria.LevoriaDataGenerator"
 		],
+		"fabric-gametest": [
+			"com.sebastian.levoria.gametest.ModGameTests"
+		],
 		"modmenu": [ "com.sebastian.levoria.ModMenuEntry" ]
 	},
 	"mixins": [
