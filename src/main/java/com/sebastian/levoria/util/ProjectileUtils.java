@@ -21,7 +21,7 @@ public class ProjectileUtils {
      * @param yaw      The horizontal angle in degrees (0 = positive Z-axis).
      * @param pitch    The vertical angle in degrees (0 = horizontal, optional).
      */
-    public static void summonArrowWithYaw(ServerWorld world, Vec3d position, double speed, float yaw, float pitch) {
+    public static ArrowEntity summonArrowWithYaw(ServerWorld world, Vec3d position, double speed, float yaw, float pitch) {
         // Convert yaw and pitch from degrees to radians
         double yawRadians = Math.toRadians(yaw);
         double pitchRadians = Math.toRadians(pitch);
@@ -46,6 +46,7 @@ public class ProjectileUtils {
 
         // Spawn the arrow in the world
         world.spawnEntity(arrow);
+        return arrow;
     }
 
     /**
@@ -57,7 +58,7 @@ public class ProjectileUtils {
      * @param yaw      The horizontal angle in degrees (0 = positive Z-axis).
      * @param pitch    The vertical angle in degrees (0 = horizontal).
      */
-    public static void shootTippedArrow(ServerWorld world, Vec3d position, float speed, float yaw, float pitch, StatusEffectInstance poisonEffect) {
+    public static ArrowEntity shootTippedArrow(ServerWorld world, Vec3d position, float speed, float yaw, float pitch, StatusEffectInstance poisonEffect) {
         // Create the arrow entity
         ArrowEntity arrowEntity = new ArrowEntity(EntityType.ARROW, world);
         arrowEntity.setPos(position.x, position.y, position.z);
@@ -81,5 +82,6 @@ public class ProjectileUtils {
 
         // Spawn the arrow in the world
         world.spawnEntity(arrowEntity);
+        return arrowEntity;
     }
 }

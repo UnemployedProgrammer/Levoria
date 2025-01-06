@@ -5,9 +5,11 @@ import com.sebastian.levoria.block.HiddenHunterBlock;
 import com.sebastian.levoria.util.ProjectileUtils;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
@@ -16,6 +18,7 @@ import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.TypeFilter;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
@@ -30,6 +33,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.UUID;
 
 public class HiddenHunterBlockEntity extends BlockEntity implements GeoBlockEntity {
 
@@ -42,6 +46,7 @@ public class HiddenHunterBlockEntity extends BlockEntity implements GeoBlockEnti
     private int attacking_time_line = 0;
     private int detect_interval = 0;
     private boolean currentlyAttackingAPlayer = false;
+    private List<UUID> entitiesToDelete = new ArrayList<>(); //Contains UUIDs
 
     public HiddenHunterBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.HIDDEN_HUNTER, pos, state);
@@ -66,12 +71,44 @@ public class HiddenHunterBlockEntity extends BlockEntity implements GeoBlockEnti
 
     }
 
+    public static void writeUUIDs(String groupName, List<UUID> uuids, NbtCompound parent) {
+        NbtCompound tag = new NbtCompound();
+        for (UUID uuid : uuids) {
+            tag.putUuid(new StringBuilder("#").append(uuids.indexOf(uuid)).toString(), uuid);
+        }
+        parent.put(groupName, tag);
+    }
+
+    public static List<UUID> readUUIDs(String groupName, NbtCompound parent) {
+        List<UUID> uuids = new ArrayList<>();
+        if(!parent.contains(groupName)) {
+            Levoria.LOGGER.warn("Could not read UUID-List due to parent not containing the group name.");
+            Levoria.LOGGER.warn("Details:");
+            Levoria.LOGGER.warn("Group-Name: {}", groupName);
+            StringBuilder parentKeys = new StringBuilder();
+            for (String key : parent.getKeys()) {
+                parentKeys.append(key).append(", ");
+            }
+            parentKeys.replace(parentKeys.length() - 2, parentKeys.length(), "");
+            Levoria.LOGGER.warn("Available Keys in Parent: {}", parentKeys.toString());
+            return uuids;
+        }
+
+        NbtCompound child = (NbtCompound) parent.get(groupName);
+        for (String key : child.getKeys()) {
+           uuids.add(child.getUuid(key));
+        }
+
+        return uuids;
+    }
+
     @Override
     protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registries) {
         nbt.putBoolean("animation_attacking", attacking);
         nbt.putBoolean("currently_attacking", currentlyAttackingAPlayer);
         nbt.putInt("attacking_ticks", attacking_time_line);
         nbt.putInt("detect_interval", detect_interval);
+        writeUUIDs("projectile_entity_uuids", entitiesToDelete, nbt);
         super.writeNbt(nbt, registries);
     }
 
@@ -89,6 +126,7 @@ public class HiddenHunterBlockEntity extends BlockEntity implements GeoBlockEnti
         if(nbt.contains("detect_interval")) {
             detect_interval = nbt.getInt("detect_interval");
         }
+        entitiesToDelete = readUUIDs("projectile_entity_uuids", nbt);
         super.readNbt(nbt, registries);
     }
 
@@ -156,23 +194,30 @@ public class HiddenHunterBlockEntity extends BlockEntity implements GeoBlockEnti
                 Vec3d pos = hiddenHunterBlockEntity.getPos().toBottomCenterPos().add(arrowDirection).add(0,0.4,0);
 
                 int arrowType = hiddenHunterBlockEntity.getRandomNumberUsingInts(1, 5); //Random int 1-5
-                //System.out.println(arrowType);
+                List<ArrowEntity> arrowEntities = world.getEntitiesByType(TypeFilter.equals(ArrowEntity.class), new Box(blockPos).expand(100.0), e -> hiddenHunterBlockEntity.entitiesToDelete.contains(e.getUuid()));
+                for (ArrowEntity arrowEntity : arrowEntities) {
+                    arrowEntity.kill((ServerWorld) arrowEntity.getWorld());
+                }
+
+                hiddenHunterBlockEntity.entitiesToDelete.clear();
 
                 if(arrowType == 1) { //if 1 shoot normal arrow
-                    ProjectileUtils.summonArrowWithYaw((ServerWorld) hiddenHunterBlockEntity.world, pos, 2.0D, yaw, 5);
+                    hiddenHunterBlockEntity.entitiesToDelete.add(ProjectileUtils.summonArrowWithYaw((ServerWorld) hiddenHunterBlockEntity.world, pos, 2.0D, yaw, 5).getUuid());
                 }
                 if(arrowType == 2) { //if 2 shoot poison arrow
-                    ProjectileUtils.shootTippedArrow((ServerWorld) hiddenHunterBlockEntity.world, pos, 2.0f, yaw, 5, new StatusEffectInstance(StatusEffects.POISON, 80, 1)); //4 sec
+                    hiddenHunterBlockEntity.entitiesToDelete.add(ProjectileUtils.shootTippedArrow((ServerWorld) hiddenHunterBlockEntity.world, pos, 2.0f, yaw, 5, new StatusEffectInstance(StatusEffects.POISON, 80, 1)).getUuid()); //4 sec
                 }
                 if(arrowType == 3) { //if 3 shoot slowness arrow
-                    ProjectileUtils.shootTippedArrow((ServerWorld) hiddenHunterBlockEntity.world, pos, 2.0f, yaw, 5, new StatusEffectInstance(StatusEffects.SLOWNESS, 200, 5)); //10 sec
+                    hiddenHunterBlockEntity.entitiesToDelete.add(ProjectileUtils.shootTippedArrow((ServerWorld) hiddenHunterBlockEntity.world, pos, 2.0f, yaw, 5, new StatusEffectInstance(StatusEffects.SLOWNESS, 200, 5)).getUuid()); //10 sec
                 }
                 if(arrowType == 4) { //if 4 shoot blindness arrow
-                    ProjectileUtils.shootTippedArrow((ServerWorld) hiddenHunterBlockEntity.world, pos, 2.0f, yaw, 5, new StatusEffectInstance(StatusEffects.BLINDNESS, 100, 1)); // 5sec
+                    hiddenHunterBlockEntity.entitiesToDelete.add(ProjectileUtils.shootTippedArrow((ServerWorld) hiddenHunterBlockEntity.world, pos, 2.0f, yaw, 5, new StatusEffectInstance(StatusEffects.BLINDNESS, 100, 1)).getUuid()); // 5sec
                 }
                 if(arrowType == 5) { //if 5 shoot weakness arrow
-                    ProjectileUtils.shootTippedArrow((ServerWorld) hiddenHunterBlockEntity.world, pos, 2.0f, yaw, 5, new StatusEffectInstance(StatusEffects.WEAKNESS, 100, 10)); //5sec
+                    hiddenHunterBlockEntity.entitiesToDelete.add(ProjectileUtils.shootTippedArrow((ServerWorld) hiddenHunterBlockEntity.world, pos, 2.0f, yaw, 5, new StatusEffectInstance(StatusEffects.WEAKNESS, 100, 10)).getUuid()); //5sec
                 }
+
+                markDirty(world, blockPos, state);
             }
 
             if(hiddenHunterBlockEntity.attacking_time_line == 50) {
