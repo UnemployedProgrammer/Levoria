@@ -12,6 +12,9 @@ public class ModBlockEntities {
     public static final BlockEntityType<HiddenHunterBlockEntity> HIDDEN_HUNTER = register("hidden_hunter_block_entity",
             FabricBlockEntityTypeBuilder.create(HiddenHunterBlockEntity::new, ModBlocks.HIDDEN_HUNTER)
                     .build());
+    public static final BlockEntityType<DoorMatBlockEntity> DOORMAT_BLOCK = register("doormat",
+            FabricBlockEntityTypeBuilder.create(DoorMatBlockEntity::new, ModBlocks.DOORMAT)
+                    .build());
 
     //METHODS
     public static <T extends BlockEntity> BlockEntityType<T> register(String name, BlockEntityType<T> type) {

@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "levoria:block/doormat",
+      "y": 0
+    },
+    "facing=east": {
+      "model": "levoria:block/doormat",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "levoria:block/doormat",
+      "y": 0
+    },
+    "facing=west": {
+      "model": "levoria:block/doormat",
+      "y": 270
+    }
+  }
+}

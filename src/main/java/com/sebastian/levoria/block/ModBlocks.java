@@ -39,8 +39,12 @@ public class ModBlocks {
 
 
     public static final HiddenHunterBlock HIDDEN_HUNTER = AdvancedRegisterBlock.registerWithItem("hidden_hunter",
-            new HiddenHunterBlock(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Levoria.id("hidden_hunter"))).nonOpaque().dropsNothing().strength(30f)
-                    .sounds(BlockSoundGroup.STONE).noBlockBreakParticles()));
+            new HiddenHunterBlock(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Levoria.id("hidden_hunter"))).nonOpaque().strength(30f)
+                    .sounds(BlockSoundGroup.LILY_PAD).noBlockBreakParticles()));
+
+    public static final DoorMatBlock DOORMAT = AdvancedRegisterBlock.registerWithItem("doormat",
+            new DoorMatBlock(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Levoria.id("doormat"))).nonOpaque().strength(1f)
+                    .sounds(BlockSoundGroup.WOOL)));
 
     public static final MoonBerryBush MOON_BERRY_BUSH = AdvancedRegisterBlock.register("moon_berry_bush",
             new MoonBerryBush(AbstractBlock.Settings.copy(Blocks.SWEET_BERRY_BUSH).registryKey(RegistryKey.of(RegistryKeys.BLOCK, Levoria.id("moon_berry_bush")))));

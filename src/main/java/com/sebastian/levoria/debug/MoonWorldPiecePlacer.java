@@ -29,6 +29,12 @@ public class MoonWorldPiecePlacer {
         });
     }
 
+    private void destroyBlock(BlockPos pos) {
+        world.getServer().execute(() -> {
+            world.breakBlock(pos, false);
+        });
+    }
+
     private void placeMoonStone(BlockPos pos) {
         world.getServer().execute(() -> {
             world.setBlockState(pos, ModBlocks.MOON_STONE.getDefaultState(), Block.NOTIFY_LISTENERS);
@@ -65,7 +71,7 @@ public class MoonWorldPiecePlacer {
                     for (int x = 0; x < sizeX ; x++) {
                         for (int y = 0; y < sizeY ; y++) {
                             for (int z = 0; z < sizeZ ; z++) {
-                                placeBlock(Blocks.AIR, bottomLeftCorner.add(x, y, z));
+                                destroyBlock(bottomLeftCorner.add(x, y, z));
                                 Thread.sleep(1);
                             }
                         }

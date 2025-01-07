@@ -2,6 +2,7 @@ package com.sebastian.levoria;
 
 import com.sebastian.levoria.block.ModBlocks;
 import com.sebastian.levoria.block.entity.ModBlockEntities;
+import com.sebastian.levoria.block_entity_renderer.DoorMatBlockEntityRenderer;
 import com.sebastian.levoria.block_entity_renderer.HiddenHunterBlockEntityRenderer;
 import com.sebastian.levoria.client_cfg.ClientConfig;
 import com.sebastian.levoria.client_cfg.ClientConfigManager;
@@ -101,6 +102,7 @@ public class LevoriaClient implements ClientModInitializer {
 
 		ScreenShakeEffect.INSTANCE = new ScreenShakeEffect();
 		BlockEntityRendererRegistry.register(ModBlockEntities.HIDDEN_HUNTER, HiddenHunterBlockEntityRenderer::new);
+		BlockEntityRendererRegistry.register(ModBlockEntities.DOORMAT_BLOCK, DoorMatBlockEntityRenderer::new);
 		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.MOON_BERRY_BUSH, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SHADOW_WOOD_SAPLING, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SHADOW_DOOR, RenderLayer.getCutout());
