@@ -48,14 +48,18 @@ public class DoorMatBlockEntityRenderer implements BlockEntityRenderer<DoorMatBl
         matrices.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(rotation));
 
         // Scale the text dynamically
-        float scale = DEFAULT_SCALE * (20.0f / entity.getMessage().length()); // Adjust scale based on text length
+        float scale = DEFAULT_SCALE * (20.0f / getText(entity.getMessage()).getString().length()); // Adjust scale based on text length
         matrices.scale(scale, scale, scale);
 
 
-        ctx.getTextRenderer().draw(Text.literal(entity.getMessage()), -MinecraftClient.getInstance().textRenderer.getWidth(entity.getMessage()) / 2f, -MinecraftClient.getInstance().textRenderer.fontHeight / 2f, 0xECECEC, false, matrices.peek().getPositionMatrix(), vertexConsumers, TextRenderer.TextLayerType.POLYGON_OFFSET, 0x000000, light);
+        ctx.getTextRenderer().draw(getText(entity.getMessage()), -MinecraftClient.getInstance().textRenderer.getWidth(getText(entity.getMessage())) / 2f, -MinecraftClient.getInstance().textRenderer.fontHeight / 2f, 0xECECEC, false, matrices.peek().getPositionMatrix(), vertexConsumers, TextRenderer.TextLayerType.POLYGON_OFFSET, 0x000000, light);
 
         matrices.pop();
 
+    }
+
+    public static Text getText(String message) {
+        return message.contains("translate->") ? Text.translatable(message.replace("translate->", "")) : Text.literal(message);
     }
 
     @Override

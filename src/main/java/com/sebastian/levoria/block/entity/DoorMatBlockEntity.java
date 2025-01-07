@@ -1,5 +1,8 @@
 package com.sebastian.levoria.block.entity;
 
+import com.sebastian.levoria.Levoria;
+import com.sebastian.levoria.network.specific.DoorMatEditRequestS2C;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -14,11 +17,12 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Random;
+import java.util.UUID;
 
 
 public class DoorMatBlockEntity extends BlockEntity {
 
-    private String message = "Welcome Home";
+    private String message = "translate->doormat.levoria.welcome";
 
     public DoorMatBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.DOORMAT_BLOCK, pos, state);
@@ -82,5 +86,14 @@ public class DoorMatBlockEntity extends BlockEntity {
     @Override
     public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registryLookup) {
         return createNbt(registryLookup);
+    }
+
+    public void editScreenFor(UUID serverPlayer) {
+        try {
+            ServerPlayNetworking.send(world.getServer().getPlayerManager().getPlayer(serverPlayer), new DoorMatEditRequestS2C(getMessage(), pos));
+        } catch (Exception e) {
+
+            Levoria.LOGGER.warn("Couldn't send doormat edit request to {}", serverPlayer);
+        }
     }
 }

@@ -74,5 +74,9 @@
   "cfg.levoria.server_dowsingRodBaseRange": "Dowsing Rod Range",
   "cfg.levoria.server_dowsingRodBaseRange.tooltip": "The base range of the dowsing rod.",
 
+  "doormat.levoria.welcome": "Welcome",
+  "doormat.levoria.shoes_off": "Shoes off, please",
+  "doormat.levoria.home_sweet": "Home Sweet Home",
+
   "item.levoria.dowsing_rod.tooltip.error": "Error while loading current selected entry."
 }

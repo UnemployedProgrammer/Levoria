@@ -12,6 +12,7 @@ import com.sebastian.levoria.network.DebugRenderingS2C;
 import com.sebastian.levoria.network.HighlightBlockS2C;
 import com.sebastian.levoria.network.ShakeScreenS2C;
 import com.sebastian.levoria.network.TotemAnimationS2C;
+import com.sebastian.levoria.network.specific.DoorMatEditRequestS2C;
 import com.sebastian.levoria.util.Commands;
 import com.sebastian.levoria.util.ModSounds;
 import com.sebastian.levoria.world.tree.ShadowTreeEffects;
@@ -62,6 +63,7 @@ public class Levoria implements ModInitializer {
 		PayloadTypeRegistry.playS2C().register(HighlightBlockS2C.ID, HighlightBlockS2C.PACKET_CODEC);
 		PayloadTypeRegistry.playS2C().register(ShakeScreenS2C.ID, ShakeScreenS2C.PACKET_CODEC);
 		PayloadTypeRegistry.playS2C().register(DebugRenderingS2C.ID, DebugRenderingS2C.PACKET_CODEC);
+		PayloadTypeRegistry.playS2C().register(DoorMatEditRequestS2C.ID, DoorMatEditRequestS2C.PACKET_CODEC);
 
 		//PayloadTypeRegistry.playC2S().register(ConfigEditor.ConfigurationPayload.ID, ConfigEditor.ConfigurationPayload.PACKET_CODEC);
 

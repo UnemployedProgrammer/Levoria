@@ -29,6 +29,10 @@
   "block.levoria.moon_bricks_wall": "Mondziegelmauer",
   "item.levoria.moon_bricks_wall": "Mondziegelmauer",
 
+  "doormat.levoria.welcome": "Willkommen",
+  "doormat.levoria.shoes_off": "Schuhe aus, bitte",
+  "doormat.levoria.home_sweet": "Hier Zuhause",
+
 
   "item.levoria.dowsing_rod.tooltip.error": "Error while loading current selected entry."
 }

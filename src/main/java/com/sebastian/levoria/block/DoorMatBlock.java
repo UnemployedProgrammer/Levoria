@@ -52,7 +52,7 @@ public class DoorMatBlock extends BlockWithEntity {
         if(world.isClient) return ActionResult.FAIL;
 
         if(world.getBlockEntity(pos) instanceof DoorMatBlockEntity bE) {
-            bE.setRandomMessage();
+            bE.editScreenFor(player.getUuid());
         }
         return ActionResult.SUCCESS;
     }

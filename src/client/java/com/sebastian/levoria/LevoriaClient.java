@@ -13,6 +13,8 @@ import com.sebastian.levoria.network.DebugRenderingS2C;
 import com.sebastian.levoria.network.HighlightBlockS2C;
 import com.sebastian.levoria.network.ShakeScreenS2C;
 import com.sebastian.levoria.network.TotemAnimationS2C;
+import com.sebastian.levoria.network.specific.DoorMatEditRequestS2C;
+import com.sebastian.levoria.screen.DoorMatEditing;
 import com.sebastian.levoria.util.hide_experimental_warning.HideExperimentalScreenEvent;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
@@ -114,6 +116,12 @@ public class LevoriaClient implements ClientModInitializer {
 		ClientPlayNetworking.registerGlobalReceiver(TotemAnimationS2C.ID, (payload, context) -> {
 			context.client().execute(() -> {
 				MinecraftClient.getInstance().gameRenderer.showFloatingItem(new ItemStack(TotemAnimationS2C.toBlock(payload.block())));
+			});
+		});
+
+		ClientPlayNetworking.registerGlobalReceiver(DoorMatEditRequestS2C.ID, (payload, context) -> {
+			context.client().execute(() -> {
+				MinecraftClient.getInstance().setScreen(new DoorMatEditing(payload.bePos(), payload.currentText()));
 			});
 		});
 
