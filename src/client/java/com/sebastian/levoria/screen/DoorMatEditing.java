@@ -1,11 +1,11 @@
 package com.sebastian.levoria.screen;
 
 import com.sebastian.levoria.Levoria;
+import com.sebastian.levoria.screen.element.CenteredTextTextbox;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.gui.EditBox;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.client.gui.widget.EditBoxWidget;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
@@ -22,7 +22,12 @@ public class DoorMatEditing extends Screen {
 
     private ButtonWidget mode_translated;
     private ButtonWidget mode_literal;
-    private EditBoxWidget textField;
+    private CenteredTextTextbox textField;
+    private int textFieldOffset = 0;
+
+    public interface OnChangeListener {
+        public void onChange(String str);
+    }
 
     public DoorMatEditing(BlockPos pos, String beCurrentText) {
         super(Text.literal(""));
@@ -34,11 +39,11 @@ public class DoorMatEditing extends Screen {
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        super.render(context, mouseX, mouseY, delta);
         context.drawTexture(RenderLayer::getGuiTextured, Levoria.id("textures/gui/doormat_x140_100.png"), width / 2 - 70, height / 2 - 50, 0, 0, 140, 100, 140, 100);
         if(translated) {
             context.drawCenteredTextWithShadow(textRenderer, Text.translatable(currentText.replace("translate->", "")), width / 2, height / 2, 0xFFFFFF);
         }
+        super.render(context, mouseX, mouseY, delta);
     }
 
     @Override
@@ -64,11 +69,21 @@ public class DoorMatEditing extends Screen {
             textField.setFocused(true);
         }).dimensions(20, 50, 100, 20).build());
 
-        textField = addDrawableChild(new EditBoxWidget(textRenderer, width / 2 - 60, height / 2 - 10, 120, 20, Text.literal("Ex. Welcome Home..."), Text.literal(currentText)));
+        textField = addDrawableChild(new CenteredTextTextbox(textRenderer, width / 2 - textFieldOffset, height / 2 - 10, 120, 20, Text.literal("Ex. Welcome Home..."), Text.literal(currentText)));
 
-        textField.setMaxLength(30);
+        if(translated) {
+            textField.visible = false;
+        }
+
+        textField.setCharLimit(20);
 
         super.init();
+    }
+
+    @Override
+    public void tick() {
+        textField.tick();
+        super.tick();
     }
 
     //@Override
