@@ -3,14 +3,17 @@ package com.sebastian.levoria.screen;
 import com.sebastian.levoria.Levoria;
 import com.sebastian.levoria.network.specific.ApplyEditedDoorMatC2S;
 import com.sebastian.levoria.screen.element.CenteredTextTextbox;
+import com.sebastian.levoria.util.DropDownManager;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.text.Text;
+import net.minecraft.util.Pair;
 import net.minecraft.util.math.BlockPos;
+
+import java.util.List;
 
 public class DoorMatEditing extends Screen {
 
@@ -26,9 +29,10 @@ public class DoorMatEditing extends Screen {
     private ButtonWidget mode_literal;
     private CenteredTextTextbox textField;
     private int textFieldOffset = 0;
+    private DropDownManager translatableSelections;
 
     public DoorMatEditing(BlockPos pos, String beCurrentText) {
-        super(Text.literal(""));
+        super(Text.translatable("gui.levoria.doormat.title"));
         this.pos = pos;
         this.beCurrentText = beCurrentText;
         this.translated = beCurrentText.contains("translate->");
@@ -42,30 +46,33 @@ public class DoorMatEditing extends Screen {
         if(translated) {
             context.drawCenteredTextWithShadow(textRenderer, Text.translatable(currentText.replace("translate->", "")), width / 2, height / 2, 0xFFFFFF);
         }
+        context.drawCenteredTextWithShadow(textRenderer, Text.translatable("gui.levoria.doormat.title"), width / 2, 10, 0xFFFFFF);
     }
 
     @Override
     public void init() {
-        mode_translated = addDrawableChild(ButtonWidget.builder(translated ? Text.literal("> Translated Text") : Text.literal("Translated Text"), (btn) -> {
-            mode_literal.setMessage(Text.literal("Literal Text"));
-            btn.setMessage(Text.literal("> Translated Text"));
+        mode_translated = addDrawableChild(ButtonWidget.builder(translated ? Text.literal("> ").append(Text.translatable("gui.levoria.doormat.translated")) : Text.translatable("gui.levoria.doormat.translated"), (btn) -> {
+            mode_literal.setMessage(Text.translatable("gui.levoria.doormat.literal"));
+            btn.setMessage(Text.literal("> ").append(Text.translatable("gui.levoria.doormat.translated")));
             translated = true;
             currentText = "translate->doormat.levoria.welcome";
             textField.active = false;
             textField.visible = false;
             textField.setFocused(false);
-        }).dimensions(20, 20, 100, 20).build());
+            translatableSelections.setVisible(true);
+        }).dimensions(20, height / 2 - 50, 100, 20).build());
 
-        mode_literal = addDrawableChild(ButtonWidget.builder(!translated ? Text.literal("> Literal Text") : Text.literal("Literal Text"), (btn) -> {
-            btn.setMessage(Text.literal("> Literal Text"));
-            mode_translated.setMessage(Text.literal("Translated Text"));
+        mode_literal = addDrawableChild(ButtonWidget.builder(!translated ? Text.literal("> ").append(Text.translatable("gui.levoria.doormat.literal")) : Text.translatable("gui.levoria.doormat.literal"), (btn) -> {
+            btn.setMessage(Text.literal("> ").append(Text.translatable("gui.levoria.doormat.literal")));
+            mode_translated.setMessage(Text.translatable("gui.levoria.doormat.translated"));
             translated = false;
             currentText = Text.translatable(currentText.replace("translate->", "")).getString();
             textField.setText(currentText);
             textField.active = true;
             textField.visible = true;
             textField.setFocused(true);
-        }).dimensions(20, 50, 100, 20).build());
+            translatableSelections.setVisible(false);
+        }).dimensions(20, height / 2 - 20, 100, 20).build());
 
         textField = addDrawableChild(new CenteredTextTextbox(textRenderer, width / 2 - textFieldOffset, height / 2 - 10, 120, 20, Text.literal("Ex. Welcome Home..."), Text.literal(currentText), new CenteredTextTextbox.OnChangeListener() {
             @Override
@@ -74,16 +81,33 @@ public class DoorMatEditing extends Screen {
             }
         }));
 
+        translatableSelections = new DropDownManager(width - 120, height / 2 - 50, 100, Text.translatable("gui.levoria.doormat.text_collection"), List.of(
+                new Pair<>("doormat.levoria.welcome", Text.translatable("doormat.levoria.welcome")),
+                new Pair<>("doormat.levoria.shoes_off", Text.translatable("doormat.levoria.shoes_off")),
+                new Pair<>("doormat.levoria.home_sweet", Text.translatable("doormat.levoria.home_sweet"))
+        ));
+
+        for (ButtonWidget buttonWidget : translatableSelections.getButtonsToAdd()) {
+            addDrawableChild(buttonWidget);
+        }
+
+        translatableSelections.setChangeListener((str) -> {
+            currentText = "translate->" + str;
+            ClientPlayNetworking.send(new ApplyEditedDoorMatC2S(currentText, pos));
+        });
+
         if(translated) {
             textField.active = false;
             textField.visible = false;
             textField.setFocused(false);
+            translatableSelections.setVisible(true);
         } else {
             currentText = Text.translatable(currentText.replace("translate->", "")).getString();
             textField.setText(currentText);
             textField.active = true;
             textField.visible = true;
             textField.setFocused(true);
+            translatableSelections.setVisible(false);
         }
 
         textField.setCharLimit(20);

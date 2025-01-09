@@ -37,8 +37,11 @@
   "block.levoria.hidden_hunter": "Hidden Hunter",
   "item.levoria.hidden_hunter": "Hidden Hunter",
 
-  "block.levoria.moon_berries_bush": "Hidden Hunter",
+  "block.levoria.moon_berries_bush": "Moon Berries",
   "item.levoria.moon_berries": "Moon Berries",
+
+  "block.levoria.doormat": "Door Mat",
+  "item.levoria.doormat": "Door Mat",
 
   "block.levoria.shadowwood_log": "Shadow Log",
   "item.levoria.shadowwood_log": "Shadow Log",
@@ -56,6 +59,10 @@
   "item.levoria.shadowwood_sapling": "Shadow Sapling",
 
   "gui.levoria.skip_warnings":  "Skip Experimental Warnings \n This will skip experimental warnings after the progressbar is filled. \n \n [ENTER] Skip Now",
+  "gui.levoria.doormat.title":  "Edit Door Mat",
+  "gui.levoria.doormat.translated":  "Translatable Text",
+  "gui.levoria.doormat.literal":  "Custom Text",
+  "gui.levoria.doormat.text_collection":  "Text Collection",
 
   "narration.levoria.skip_warnings_title": "Skipping Experimental warnings in a few seconds.",
   "narration.levoria.skip_warnings_hint": "Press enter to skip immediately.",

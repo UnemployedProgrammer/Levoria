@@ -29,9 +29,17 @@
   "block.levoria.moon_bricks_wall": "Mondziegelmauer",
   "item.levoria.moon_bricks_wall": "Mondziegelmauer",
 
+  "block.levoria.doormat": "Türmatte",
+  "item.levoria.doormat": "Türmatte",
+
+  "gui.levoria.doormat.title":  "Türmatte bearbeiten",
+  "gui.levoria.doormat.translated":  "Übersetzbarer Text",
+  "gui.levoria.doormat.literal":  "Eigener Text",
+  "gui.levoria.doormat.text_collection":  "Text Kollektion",
+
   "doormat.levoria.welcome": "Willkommen",
   "doormat.levoria.shoes_off": "Schuhe aus, bitte",
-  "doormat.levoria.home_sweet": "Hier Zuhause",
+  "doormat.levoria.home_sweet": "Trautes Heim, Glück allein",
 
 
   "item.levoria.dowsing_rod.tooltip.error": "Error while loading current selected entry."
