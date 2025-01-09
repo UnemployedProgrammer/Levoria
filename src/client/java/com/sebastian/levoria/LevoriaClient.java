@@ -121,6 +121,7 @@ public class LevoriaClient implements ClientModInitializer {
 
 		ClientPlayNetworking.registerGlobalReceiver(DoorMatEditRequestS2C.ID, (payload, context) -> {
 			context.client().execute(() -> {
+				//MinecraftClient.getInstance().setScreen(new DoorMatEditing(payload.bePos(), payload.currentText()));
 				MinecraftClient.getInstance().setScreen(new DoorMatEditing(payload.bePos(), payload.currentText()));
 			});
 		});

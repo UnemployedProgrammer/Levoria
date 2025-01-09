@@ -1,6 +1,7 @@
 package com.sebastian.levoria;
 
 import com.sebastian.levoria.block.ModBlocks;
+import com.sebastian.levoria.block.entity.DoorMatBlockEntity;
 import com.sebastian.levoria.block.entity.ModBlockEntities;
 import com.sebastian.levoria.config.ConfigEditor;
 import com.sebastian.levoria.config.ConfigManager;
@@ -12,6 +13,7 @@ import com.sebastian.levoria.network.DebugRenderingS2C;
 import com.sebastian.levoria.network.HighlightBlockS2C;
 import com.sebastian.levoria.network.ShakeScreenS2C;
 import com.sebastian.levoria.network.TotemAnimationS2C;
+import com.sebastian.levoria.network.specific.ApplyEditedDoorMatC2S;
 import com.sebastian.levoria.network.specific.DoorMatEditRequestS2C;
 import com.sebastian.levoria.util.Commands;
 import com.sebastian.levoria.util.ModSounds;
@@ -21,11 +23,13 @@ import com.sebastian.levoria.world.gen.ModWorldGen;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.gen.trunk.TrunkPlacerType;
 import org.slf4j.Logger;
@@ -64,6 +68,22 @@ public class Levoria implements ModInitializer {
 		PayloadTypeRegistry.playS2C().register(ShakeScreenS2C.ID, ShakeScreenS2C.PACKET_CODEC);
 		PayloadTypeRegistry.playS2C().register(DebugRenderingS2C.ID, DebugRenderingS2C.PACKET_CODEC);
 		PayloadTypeRegistry.playS2C().register(DoorMatEditRequestS2C.ID, DoorMatEditRequestS2C.PACKET_CODEC);
+		PayloadTypeRegistry.playC2S().register(ApplyEditedDoorMatC2S.ID, ApplyEditedDoorMatC2S.PACKET_CODEC);
+
+		ServerPlayNetworking.registerGlobalReceiver(ApplyEditedDoorMatC2S.ID, (payload, context) -> {
+			context.server().execute(() -> {
+				ServerWorld world = context.player().getServerWorld();
+				if(world.getBlockEntity(payload.pos()) instanceof DoorMatBlockEntity be) {
+					if (payload.str().isEmpty()) {
+						be.setMessage("");
+					}
+					if(payload.str().length() == 1 || payload.str().length() == 2) {
+						return;
+					}
+					be.setMessage(payload.str());
+				}
+			});
+		});
 
 		//PayloadTypeRegistry.playC2S().register(ConfigEditor.ConfigurationPayload.ID, ConfigEditor.ConfigurationPayload.PACKET_CODEC);
 

@@ -1,7 +1,9 @@
 package com.sebastian.levoria.screen;
 
 import com.sebastian.levoria.Levoria;
+import com.sebastian.levoria.network.specific.ApplyEditedDoorMatC2S;
 import com.sebastian.levoria.screen.element.CenteredTextTextbox;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
@@ -25,10 +27,6 @@ public class DoorMatEditing extends Screen {
     private CenteredTextTextbox textField;
     private int textFieldOffset = 0;
 
-    public interface OnChangeListener {
-        public void onChange(String str);
-    }
-
     public DoorMatEditing(BlockPos pos, String beCurrentText) {
         super(Text.literal(""));
         this.pos = pos;
@@ -40,10 +38,10 @@ public class DoorMatEditing extends Screen {
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         context.drawTexture(RenderLayer::getGuiTextured, Levoria.id("textures/gui/doormat_x140_100.png"), width / 2 - 70, height / 2 - 50, 0, 0, 140, 100, 140, 100);
+        super.render(context, mouseX, mouseY, delta);
         if(translated) {
             context.drawCenteredTextWithShadow(textRenderer, Text.translatable(currentText.replace("translate->", "")), width / 2, height / 2, 0xFFFFFF);
         }
-        super.render(context, mouseX, mouseY, delta);
     }
 
     @Override
@@ -69,10 +67,23 @@ public class DoorMatEditing extends Screen {
             textField.setFocused(true);
         }).dimensions(20, 50, 100, 20).build());
 
-        textField = addDrawableChild(new CenteredTextTextbox(textRenderer, width / 2 - textFieldOffset, height / 2 - 10, 120, 20, Text.literal("Ex. Welcome Home..."), Text.literal(currentText)));
+        textField = addDrawableChild(new CenteredTextTextbox(textRenderer, width / 2 - textFieldOffset, height / 2 - 10, 120, 20, Text.literal("Ex. Welcome Home..."), Text.literal(currentText), new CenteredTextTextbox.OnChangeListener() {
+            @Override
+            public void onChange(String str) {
+                ClientPlayNetworking.send(new ApplyEditedDoorMatC2S(str, pos));
+            }
+        }));
 
         if(translated) {
+            textField.active = false;
             textField.visible = false;
+            textField.setFocused(false);
+        } else {
+            currentText = Text.translatable(currentText.replace("translate->", "")).getString();
+            textField.setText(currentText);
+            textField.active = true;
+            textField.visible = true;
+            textField.setFocused(true);
         }
 
         textField.setCharLimit(20);
@@ -84,6 +95,11 @@ public class DoorMatEditing extends Screen {
     public void tick() {
         textField.tick();
         super.tick();
+    }
+
+    @Override
+    public boolean shouldPause() {
+        return false;
     }
 
     //@Override
