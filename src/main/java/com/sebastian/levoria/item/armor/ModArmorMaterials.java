@@ -14,8 +14,6 @@ import net.minecraft.util.Util;
 
 import java.util.EnumMap;
 
-import static com.ibm.icu.impl.SortedSetRelation.A;
-
 public class ModArmorMaterials  {
     public static ArmorMaterial SPACESUIT = new ArmorMaterial(60, Util.make(new EnumMap(EquipmentType.class), map -> {
         map.put(EquipmentType.BOOTS, 2);

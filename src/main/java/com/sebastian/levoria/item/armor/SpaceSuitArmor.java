@@ -45,6 +45,8 @@ public final class SpaceSuitArmor extends ArmorItem implements GeoItem {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     public final MutableObject<GeoRenderProvider> renderProviderHolder = new MutableObject<>();
 
+
+
     public SpaceSuitArmor(ArmorMaterial material, EquipmentType type, Settings settings) {
         super(material, type, settings);
     }
