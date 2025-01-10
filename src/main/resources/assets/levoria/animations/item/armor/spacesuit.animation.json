@@ -1,0 +1,32 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.spacesuit.idle": {
+			"loop": true,
+			"animation_length": 10,
+			"bones": {
+				"pipe": {
+					"scale": {
+						"0.0": {
+							"vector": [1, 1, 1],
+							"easing": "linear"
+						},
+						"4.0": {
+							"vector": [1.05, 1.05, 1.05],
+							"easing": "easeOutCubic"
+						},
+						"8.0": {
+							"vector": [1, 1, 1],
+							"easing": "easeInCubic"
+						},
+						"10.0": {
+							"vector": [1, 1, 1],
+							"easing": "linear"
+						}
+					}
+				}
+			}
+		}
+	},
+	"geckolib_format_version": 2
+}

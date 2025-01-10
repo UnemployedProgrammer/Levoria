@@ -9,12 +9,14 @@ import com.sebastian.levoria.client_cfg.ClientConfigManager;
 import com.sebastian.levoria.debug_renderers.DebugRendererRouter;
 import com.sebastian.levoria.effects.MoonDimensionEffects;
 import com.sebastian.levoria.effects.ScreenShakeEffect;
+import com.sebastian.levoria.item.ModItems;
 import com.sebastian.levoria.network.DebugRenderingS2C;
 import com.sebastian.levoria.network.HighlightBlockS2C;
 import com.sebastian.levoria.network.ShakeScreenS2C;
 import com.sebastian.levoria.network.TotemAnimationS2C;
 import com.sebastian.levoria.network.specific.DoorMatEditRequestS2C;
 import com.sebastian.levoria.screen.DoorMatEditing;
+import com.sebastian.levoria.util.SpaceSuitRenderer;
 import com.sebastian.levoria.util.hide_experimental_warning.HideExperimentalScreenEvent;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
@@ -96,6 +98,8 @@ public class LevoriaClient implements ClientModInitializer {
 
 	@Override
 	public void onInitializeClient() {
+
+		SpaceSuitRenderer.register();
 
 		ClientConfigManager.CONFIG_FILE = new File(MinecraftClient.getInstance().runDirectory, "config/levoria_client.json");
 		ClientConfig.INSTANCE = ClientConfigManager.read();

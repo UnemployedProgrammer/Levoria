@@ -15,11 +15,11 @@
 	"icon": "assets/levoria/icon.png",
 	"environment": "*",
 	"entrypoints": {
-		"main": [
-			"com.sebastian.levoria.Levoria"
-		],
 		"client": [
 			"com.sebastian.levoria.LevoriaClient"
+		],
+		"main": [
+			"com.sebastian.levoria.Levoria"
 		],
 		"fabric-datagen": [
 			"com.sebastian.levoria.LevoriaDataGenerator"
