@@ -2,6 +2,7 @@ package com.sebastian.levoria.item.armor;
 
 import com.sebastian.levoria.item.ModDataComponentTypes;
 import com.sebastian.levoria.item.ModItems;
+import com.sebastian.levoria.util.TickConverter;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import net.minecraft.component.DataComponentTypes;
@@ -19,6 +20,7 @@ import net.minecraft.item.equipment.EquipmentType;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.Pair;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.event.listener.GameEventListener;
 import org.apache.commons.lang3.mutable.MutableObject;
@@ -121,11 +123,26 @@ public final class SpaceSuitArmor extends ArmorItem implements GeoItem {
                 }
                 progressBar.append("]");
 
-                tooltip.add(Text.literal("Progress: " + progressBar.toString() + " " + (int)((float)val / maxVal * 100) + "%").formatted(Formatting.WHITE));
+                tooltip.add(Text.literal(progressBar.toString() + " " + (int)((float)val / maxVal * 100) + "%").formatted(getColor(val)));
             }
         } catch (Exception ignored) {
         }
         super.appendTooltip(stack, context, tooltip, type);
+    }
+
+    public static Formatting getColor(int air) {
+        Formatting red = Formatting.RED;
+        Formatting yellow = Formatting.YELLOW;
+        Formatting color = Formatting.GREEN;
+
+        if(air <= 24000) {
+            color = yellow;
+        }
+        if(air <= 6000) {
+            color = red;
+        }
+
+        return color;
     }
 
     @Override

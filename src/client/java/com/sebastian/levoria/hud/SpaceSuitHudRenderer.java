@@ -23,7 +23,7 @@ public class SpaceSuitHudRenderer {
                 TooltipBackgroundRenderer.render(context, 5, 5, 150, 25, 0, null);
                 float percentage = percentageOf(air, 72000);
                 int width = calculatePercentage(percentage, 144);
-                System.out.println(percentage + "% | " + width + " of 152");
+                //System.out.println(percentage + "% | " + width + " of 152");
                 context.fill(8, 20, 8 + width, 30, 0, ColorHelper.fullAlpha(p.getRight()));
                 context.drawText(MinecraftClient.getInstance().textRenderer, Text.translatable("gui.levoria.oxygen_left").getString().replace("{}", p.getLeft()), 8, 8, 0xFFFFFF, false);
             }
