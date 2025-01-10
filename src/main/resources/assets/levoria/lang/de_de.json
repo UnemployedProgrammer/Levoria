@@ -41,6 +41,8 @@
   "doormat.levoria.shoes_off": "Schuhe aus, bitte",
   "doormat.levoria.home_sweet": "Trautes Heim, Glück allein",
 
+  "death.attack.drown": "%s vergaß, den Sauerstofftank aufzufüllen",
+  "death.attack.drown.player": "%s vergaß, den Sauerstofftank aufzufüllen, während er versuchte, %s zu entkommen",
 
   "item.levoria.dowsing_rod.tooltip.error": "Error while loading current selected entry."
 }

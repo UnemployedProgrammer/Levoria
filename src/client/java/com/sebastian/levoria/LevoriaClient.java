@@ -9,8 +9,7 @@ import com.sebastian.levoria.client_cfg.ClientConfigManager;
 import com.sebastian.levoria.debug_renderers.DebugRendererRouter;
 import com.sebastian.levoria.effects.MoonDimensionEffects;
 import com.sebastian.levoria.effects.ScreenShakeEffect;
-import com.sebastian.levoria.item.ModItems;
-import com.sebastian.levoria.network.DebugRenderingS2C;
+import com.sebastian.levoria.hud.SpaceSuitHudRenderer;
 import com.sebastian.levoria.network.HighlightBlockS2C;
 import com.sebastian.levoria.network.ShakeScreenS2C;
 import com.sebastian.levoria.network.TotemAnimationS2C;
@@ -103,6 +102,8 @@ public class LevoriaClient implements ClientModInitializer {
 
 		ClientConfigManager.CONFIG_FILE = new File(MinecraftClient.getInstance().runDirectory, "config/levoria_client.json");
 		ClientConfig.INSTANCE = ClientConfigManager.read();
+
+		SpaceSuitHudRenderer.register();
 
 		HideExperimentalScreenEvent.register();
 

@@ -15,6 +15,9 @@ public class ModDataComponentTypes {
     public static final ComponentType<Integer> LOOKFOR_ORE =
             register("lookfor_ore", builder -> builder.codec(Codec.INT));
 
+    public static final ComponentType<Integer> OXYGEN =
+            register("oxygen", builder -> builder.codec(Codec.INT));
+
 
     private static <T>ComponentType<T> register(String name, UnaryOperator<ComponentType.Builder<T>> builderOperator) {
         return Registry.register(Registries.DATA_COMPONENT_TYPE, Levoria.id(name),

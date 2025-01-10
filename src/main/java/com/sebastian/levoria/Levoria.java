@@ -17,6 +17,7 @@ import com.sebastian.levoria.network.specific.ApplyEditedDoorMatC2S;
 import com.sebastian.levoria.network.specific.DoorMatEditRequestS2C;
 import com.sebastian.levoria.util.Commands;
 import com.sebastian.levoria.util.ModSounds;
+import com.sebastian.levoria.world.MoonWorldEffects;
 import com.sebastian.levoria.world.tree.ShadowTreeEffects;
 import com.sebastian.levoria.world.tree.ShadowTreeTrunkPlacer;
 import com.sebastian.levoria.world.gen.ModWorldGen;
@@ -27,8 +28,11 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
+import net.minecraft.entity.damage.DamageType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.gen.trunk.TrunkPlacerType;
@@ -43,6 +47,9 @@ public class Levoria implements ModInitializer {
 
 	//tree trunk placers
 	public static final TrunkPlacerType<ShadowTreeTrunkPlacer> SHADOW_TRUNK_PLACER = new TrunkPlacerType<>(ShadowTreeTrunkPlacer.CODEC);
+
+	//damage types
+	public static final RegistryKey<DamageType> NO_OXYGEN_DAMAGE = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, id("no_oxygen"));
 
 	@Override
 	public void onInitialize() {
@@ -109,6 +116,9 @@ public class Levoria implements ModInitializer {
 
 		//LOAD-CONFIG
 		ConfigManager.registerConfigUn_Loaders();
+
+		//WORLD-EFFECTS
+		MoonWorldEffects.register();
 	}
 
 

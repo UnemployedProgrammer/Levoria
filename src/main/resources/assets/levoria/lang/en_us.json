@@ -64,6 +64,8 @@
   "gui.levoria.doormat.literal":  "Custom Text",
   "gui.levoria.doormat.text_collection":  "Text Collection",
 
+  "gui.levoria.oxygen_left":  "Oxygen Left: {} min",
+
   "narration.levoria.skip_warnings_title": "Skipping Experimental warnings in a few seconds.",
   "narration.levoria.skip_warnings_hint": "Press enter to skip immediately.",
 
@@ -85,5 +87,8 @@
   "doormat.levoria.shoes_off": "Shoes off, please",
   "doormat.levoria.home_sweet": "Home Sweet Home",
 
-  "item.levoria.dowsing_rod.tooltip.error": "Error while loading current selected entry."
+  "item.levoria.dowsing_rod.tooltip.error": "Error while loading current selected entry.",
+
+  "death.attack.no_oxygen": "%s forgot to refill the oxygen tank",
+  "death.attack.no_oxygen.player": "%s forgot to refill the oxygen tank whilst trying to escape %s"
 }
