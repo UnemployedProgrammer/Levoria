@@ -9,6 +9,8 @@ import com.sebastian.levoria.client_cfg.ClientConfigManager;
 import com.sebastian.levoria.debug_renderers.DebugRendererRouter;
 import com.sebastian.levoria.effects.MoonDimensionEffects;
 import com.sebastian.levoria.effects.ScreenShakeEffect;
+import com.sebastian.levoria.entity.ModEntities;
+import com.sebastian.levoria.entity_renderers.RocketEntityRenderer;
 import com.sebastian.levoria.hud.SpaceSuitHudRenderer;
 import com.sebastian.levoria.network.HighlightBlockS2C;
 import com.sebastian.levoria.network.ShakeScreenS2C;
@@ -22,6 +24,7 @@ import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderContext;
 import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderEvents;
 import net.minecraft.block.BlockState;
@@ -99,6 +102,7 @@ public class LevoriaClient implements ClientModInitializer {
 	public void onInitializeClient() {
 
 		SpaceSuitRenderer.register();
+		EntityRendererRegistry.register(ModEntities.ROCKET, RocketEntityRenderer::new);
 
 		ClientConfigManager.CONFIG_FILE = new File(MinecraftClient.getInstance().runDirectory, "config/levoria_client.json");
 		ClientConfig.INSTANCE = ClientConfigManager.read();

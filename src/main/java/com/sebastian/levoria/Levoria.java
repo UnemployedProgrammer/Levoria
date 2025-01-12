@@ -6,6 +6,8 @@ import com.sebastian.levoria.block.entity.ModBlockEntities;
 import com.sebastian.levoria.config.ConfigEditor;
 import com.sebastian.levoria.config.ConfigManager;
 import com.sebastian.levoria.enchantment.ModEnchantmentEffects;
+import com.sebastian.levoria.entity.ModEntities;
+import com.sebastian.levoria.entity.RocketEntity;
 import com.sebastian.levoria.item.ModDataComponentTypes;
 import com.sebastian.levoria.item.ModItemGroups;
 import com.sebastian.levoria.item.ModItems;
@@ -25,6 +27,7 @@ import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
@@ -63,6 +66,7 @@ public class Levoria implements ModInitializer {
 		ModDataComponentTypes.registerDataComponentTypes();
 		ModBlocks.registerModBlocks();
 		ModBlockEntities.registerModBlockEntities();
+		ModEntities.registerModEntities();
 		ModEnchantmentEffects.registerEnchantmentEffects();
 		ModItemGroups.registerModItemGrops();
 		ModSounds.registerSounds();
@@ -119,6 +123,9 @@ public class Levoria implements ModInitializer {
 
 		//WORLD-EFFECTS
 		MoonWorldEffects.register();
+
+		//ENTITY-ATTRIBUTES
+
 	}
 
 
